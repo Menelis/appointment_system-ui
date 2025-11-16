@@ -1,0 +1,19 @@
+{
+  "production": false,
+  "authServer": {
+    "issuer": "http://127.0.0.1:9000",
+    "clientId": "appointment-ui-client",
+    "redirectUri": "http://localhost:4200",
+    "postLogoutRedirectUri": "http://localhost:4200",
+    "scope": "openid profile email",
+    "strictDiscoveryDocumentValidation": false,
+    "responseType": "code",
+    "requireHttps": false,
+    "disableAtHashCheck": false,
+    "useSilentRefresh": false,
+    "disablePKCE": false
+  },
+  "resourceServer": {
+    "endPoint": "http://localhost:9001/api/v1/"
+  }
+}
