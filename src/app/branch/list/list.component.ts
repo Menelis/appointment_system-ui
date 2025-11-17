@@ -1,6 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {APP_CONFIG_TOKEN, AppConfig} from '../../core/models/app-config';
+import {Component, OnInit} from '@angular/core';
 import {RepositoryService} from '../../core/services/repository.service';
 
 @Component({
