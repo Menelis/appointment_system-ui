@@ -1,5 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {APP_CONFIG_TOKEN, AppConfig} from '../core/models/app-config';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../core/services/auth/auth.service';
 
 @Component({
@@ -9,14 +8,12 @@ import {AuthService} from '../core/services/auth/auth.service';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit{
-  constructor(@Inject(APP_CONFIG_TOKEN) appConfig: AppConfig,
-              public authService: AuthService) {
-  }
-  logIn = () => {
-    this.authService.logIn();
-  }
+  isAuthenticated!: boolean;
+
+  public constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.isAuthenticated = this.authService.isAuthenticated;
     console.log(this.authService.accessToken);
   }
 }

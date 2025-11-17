@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {APP_CONFIG_TOKEN, AppConfig} from '../../core/models/app-config';
+import {RepositoryService} from '../../core/services/repository.service';
 
 @Component({
   selector: 'app-list',
@@ -9,18 +10,19 @@ import {APP_CONFIG_TOKEN, AppConfig} from '../../core/models/app-config';
   styleUrl: './list.component.scss'
 })
 export class ListComponent implements OnInit {
-  resourceServerUrl!: string;
-  constructor(private _http: HttpClient,
-              @Inject(APP_CONFIG_TOKEN) appConfig: AppConfig) {
-    this.resourceServerUrl = appConfig.resourceServer.endPoint;
+  constructor(private _repo: RepositoryService) {
   }
   ngOnInit(): void {
-    this._http.get(`${this.resourceServerUrl}branch`).subscribe({
-      next:(response) => {
+    this.loadBranches();
+  }
+
+  loadBranches = () => {
+    this._repo.getData('branch').subscribe({
+      next: (response) => {
         console.log(response);
       },
       error: (error) => {
-        console.log(error);
+        console.error(error);
       }
     })
   }

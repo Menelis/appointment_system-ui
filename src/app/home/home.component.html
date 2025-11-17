@@ -1,8 +1,11 @@
-<p>home works!</p>
-<div *ngIf="authService.isAuthenticated">
-  <button class="btn btn-secondary">Sign Out</button>
-  <a class="btn btn-primary" [routerLink]="['/branch']">Route Branches</a>
-</div>
-<div *ngIf="!authService.isAuthenticated">
-  <button class="btn btn-primary" type="button" (click)="logIn()">Sign In</button>
+<div class="col-md-10">
+  <div class="card" *ngIf="!isAuthenticated">
+    <div class="card-body">
+      <p class="text-center">
+        Welcome to Appointment System.
+        To make a branch appointment please sign up <a routerLink="/account/sign-up">here</a> if you have not registered
+        or sign in <a routerLink="/account/sign-in">here</a> to make an appointment
+      </p>
+    </div>
+  </div>
 </div>

@@ -13,11 +13,11 @@ export class AuthService {
     this.oauthService.loadDiscoveryDocumentAndTryLogin();
   }
 
-  logIn = () => {
+  signIn = () => {
     this.oauthService.initCodeFlow();
   }
 
-  logOut = () => {
+  signOut = () => {
     this.oauthService.logOut();
   }
 
