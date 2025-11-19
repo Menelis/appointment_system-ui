@@ -1,1 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+.mb-3.required label:after {
+  content: "*";
+  color: #ff0000;
+}

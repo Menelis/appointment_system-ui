@@ -1,1 +1,59 @@
-<p>sign-up works!</p>
+<div class="row">
+  <div class="col-md-4 mx-auto">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title text-center fw-bold">
+          <i class="bi bi-person-fill-up"></i>
+          Sign Up
+        </div>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="signUpForm" novalidate autocomplete="on" (ngSubmit)="onSubmit()">
+          <div class="mb-3 required">
+            <label>First Name:</label>
+            <input typeof="text" class="form-control" formControlName="firstName">
+            <span class="text-danger" *ngIf="_genericValidation.hasError(signUpForm, 'firstName', 'required') && _genericValidation.validateControl(signUpForm, 'firstName')">First Name is required</span>
+            <span class="text-danger" *ngIf="_genericValidation.hasError(signUpForm, 'firstName', 'maxlength') && _genericValidation.validateControl(signUpForm, 'firstName')">Only 100 characters allowed for First Name</span>
+          </div>
+          <div class="mb-3 required">
+            <label>Last Name:</label>
+            <input typeof="text" class="form-control" formControlName="lastName">
+            <span class="text-danger" *ngIf="_genericValidation.hasError(signUpForm, 'lastName', 'required') && _genericValidation.validateControl(signUpForm, 'lastName')">Last Name is required</span>
+            <span class="text-danger" *ngIf="_genericValidation.hasError(signUpForm, 'lastName', 'maxlength') && _genericValidation.validateControl(signUpForm, 'lastName')">Only 100 characters allowed for Last Name</span>
+          </div>
+          <div class="mb-3 required">
+            <label>Email:</label>
+            <input typeof="text" class="form-control" formControlName="email">
+            <span class="text-danger" *ngIf="_genericValidation.hasError(signUpForm, 'email', 'required') && _genericValidation.validateControl(signUpForm, 'email')">Email is required</span>
+            <span class="text-danger" *ngIf="_genericValidation.hasError(signUpForm, 'email', 'maxlength') && _genericValidation.validateControl(signUpForm, 'email')">Only 100 characters allowed for Email</span>
+            <span class="text-danger" *ngIf="_genericValidation.hasError(signUpForm, 'email', 'email') && _genericValidation.validateControl(signUpForm, 'email')">Invalid Email format.</span>
+          </div>
+          <div class="mb-3">
+            <label>Contact Number:</label>
+            <input typeof="text" class="form-control" formControlName="contactNo">
+            <span class="text-danger" *ngIf="_genericValidation.hasError(signUpForm, 'contactNo', 'maxlength') && _genericValidation.validateControl(signUpForm, 'contactNo')">Only 20 characters allowed for Contact Number</span>
+          </div>
+          <div class="mb-3 required">
+            <label>Password:</label>
+            <input type="password" class="form-control" formControlName="password">
+            <span class="text-danger" *ngIf="_genericValidation.hasError(signUpForm, 'password', 'required') && _genericValidation.validateControl(signUpForm, 'password')">Password is required</span>
+            <span class="text-danger" *ngIf="_genericValidation.hasError(signUpForm, 'password', 'maxlength') && _genericValidation.validateControl(signUpForm, 'password')">Password cannot exceed 20 characters</span>
+          </div>
+          <div class="mb-3 required">
+            <label>Confirm Password:</label>
+            <input type="password" class="form-control" formControlName="confirmPassword"/>
+            <span class="text-danger" *ngIf="_genericValidation.hasError(signUpForm, 'confirmPassword', 'required') && _genericValidation.validateControl(signUpForm, 'confirmPassword')">Confirm Password is required</span>
+            <span class="text-danger" *ngIf="_genericValidation.hasError(signUpForm, 'confirmPassword', 'mustMatch') && _genericValidation.validateControl(signUpForm, 'confirmPassword')">Password must match</span>
+          </div>
+          <div class="col-md-12">
+            <button class="btn btn-primary w-100" type="submit" [disabled]="!signUpForm.valid">Sign Up</button>
+            <button class="btn btn-secondary w-100" (click)="cancel()" type="button">Cancel</button>
+          </div>
+          <div class="col-ms-12">
+            <span [ngClass]="success ? 'text-success' : 'text-danger'" >{{ responseMessage }}</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

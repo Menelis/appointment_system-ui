@@ -1,4 +1,4 @@
-import { HttpInterceptorFn } from '@angular/common/http';
+import { HttpInterceptorFn, HttpXsrfTokenExtractor } from '@angular/common/http';
 import {OAuthService} from 'angular-oauth2-oidc';
 import {inject} from '@angular/core';
 

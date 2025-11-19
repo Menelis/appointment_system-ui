@@ -1,6 +1,6 @@
-<div class="navbar navbar-expand-lg bg-primary ps-4">
-  <a class="navbar-brand text-white" routerLink="/">Appointment System</a>
-  <div class="dropdown ms-auto mb-2 mb-lg-0" *ngIf="isAuthenticated">
+<div class="navbar navbar-expand-lg ps-4 shadow-lg shadow">
+  <a class="navbar-brand text-black" routerLink="/">Appointment System</a>
+  <div class="dropdown ms-auto mb-2 mb-lg-1" *ngIf="isAuthenticated">
     <a class="btn bg-primary dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       Username
     </a>
@@ -10,15 +10,18 @@
       </li>
     </ul>
   </div>
-  <div *ngIf="!isAuthenticated" class="ms-auto mb-3 mb-lg-0">
-    <a routerLink="['/account/signup']" class="text-white text-decoration-none">
-      <i class="bi bi-box-arrow-in-up"></i>
+  <div class="mb-2 mb-lg-1 ms-auto" *ngIf="!isAuthenticated">
+    <a routerLink="/account/sign-up" class="text-black text-decoration-none">
+      <i class="bi bi-person-fill-up"></i>
       Sign Up</a>
+    <a routerLink="/account/sign-in" class="text-black text-decoration-none">
+      <i class="bi bi-lock-fill"></i>
+      Sign In</a>
   </div>
 </div>
 <div class="container-fluid">
   <div class="row vh-100 overflow-auto">
-    <div class="col-12 col-sm-3 col-xl-3 px-0 d-flex sticky-top">
+    <div class="col-12 col-sm-3 col-xl-3 px-0 d-flex sticky-top shadow-lg" *ngIf="isAuthenticated">
       Left menu here
     </div>
     <div class="col d-flex flex-column h-sm-100">

@@ -3,7 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {provideHttpClient, withFetch, withInterceptors} from '@angular/common/http';
+import {
+  HttpClientXsrfModule,
+  provideHttpClient,
+  withFetch,
+  withInterceptors, withNoXsrfProtection,
+  withXsrfConfiguration
+} from '@angular/common/http';
 import {OAuthModule} from 'angular-oauth2-oidc';
 import { HomeComponent } from './home/home.component';
 import {httpInterceptor} from './core/intercepters/http.interceptor';
@@ -19,7 +25,14 @@ import {httpInterceptor} from './core/intercepters/http.interceptor';
     OAuthModule.forRoot()
   ],
   providers: [
-    provideHttpClient(withFetch(), withInterceptors([httpInterceptor]))
+    provideHttpClient(
+      withXsrfConfiguration({
+        cookieName: 'XSRF-TOKEN',
+        headerName: 'X-XSRF-TOKEN'
+      }),
+      withFetch(),
+      withInterceptors([httpInterceptor])
+      )
   ],
   bootstrap: [AppComponent]
 })
