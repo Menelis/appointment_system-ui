@@ -13,19 +13,19 @@ export class RepositoryService {
     this.resourceServerEndpoint = appConfig.resourceServer.endPoint;
   }
 
-  public getData = (route: string) => {
-    return this._http.get(this.createCompleteRoute(route));
+  public getData<T>(route: string) {
+    return this._http.get<T>(this.createCompleteRoute(route));
   }
-  public create = (route: string, body: any) => {
-    return this._http.post(this.createCompleteRoute(route), body);
-  }
-
-  public update = (route: string, body: any) => {
-    return this._http.put(this.createCompleteRoute(route), body);
+  public create<T> (route: string, body: any)  {
+    return this._http.post<T>(this.createCompleteRoute(route), body);
   }
 
-  public delete = (route: string) => {
-    return this._http.delete(this.createCompleteRoute(route));
+  public update<T>(route: string, body: any)  {
+    return this._http.put<T>(this.createCompleteRoute(route), body);
+  }
+
+  public delete<T>  (route: string)  {
+    return this._http.delete<T>(this.createCompleteRoute(route));
   }
   private createCompleteRoute = (route: string) => {
     return `${this.resourceServerEndpoint}/${route}`;

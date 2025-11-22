@@ -12,7 +12,7 @@ export class AppComponent {
 
   title = 'appointment-system-ui';
   isAuthenticated = this.authService.isAuthenticated;
-
+  fullName = this.authService.fullName;
   signOut = () => {
     this.authService.signOut()
   }

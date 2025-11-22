@@ -1,8 +1,8 @@
 <div class="navbar navbar-expand-lg ps-4 shadow-lg shadow">
   <a class="navbar-brand text-black" routerLink="/">Appointment System</a>
   <div class="dropdown ms-auto mb-2 mb-lg-1" *ngIf="isAuthenticated">
-    <a class="btn bg-primary dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Username
+    <a class="btn bg-white dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      {{ fullName }}
     </a>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
       <li>
