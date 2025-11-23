@@ -10,6 +10,6 @@ export class ProvinceService {
 
   constructor(private _repository: RepositoryService) { }
   getAllProvinces = () => {
-    return this._repository.getData<ApiResponse<ProvinceDto[]>>('province/admin/get-all')
+    return this._repository.getData<ApiResponse<ProvinceDto[]>>('province/get-all')
   }
 }
