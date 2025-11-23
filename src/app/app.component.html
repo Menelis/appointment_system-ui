@@ -7,13 +7,13 @@
     </div>
     <div class="flex-grow-1 d-flex align-items-center">
       <div class="w-100 mb-3">
-        <a class="navbar-brand text-black fw-bold" routerLink="/">Appointment System</a>
+        <a class="navbar-brand text-black fw-bold" routerLink="/"></a>
       </div>
       <div *ngIf="isAuthenticated" class="flex-shrink-0 dropdown ">
         <a class="btn bg-white dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ fullName }}</a>
         <ul class="dropdown-menu dropdown-menu-end shadow" aria-describedby="dropdownMenuLink">
           <li>
-            <a class="dropdown-item" (click)="signOut()">Sign Out</a>
+            <button class="dropdown-item" (click)="signOut()" type="button">Sign Out</button>
           </li>
         </ul>
       </div>
