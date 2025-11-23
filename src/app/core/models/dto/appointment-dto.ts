@@ -5,7 +5,7 @@ export interface AppointmentDto {
   branch: any;
   user: any;
   appointmentDate: string;
-  slot: SlotDto,
+  slot?: SlotDto,
   referenceNo: string;
   status: string
 }
