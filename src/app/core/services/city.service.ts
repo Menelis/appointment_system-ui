@@ -11,6 +11,6 @@ export class CityService {
   constructor(private _repository: RepositoryService) { }
 
   getCitiesByProvinceId = (provinceId: number) => {
-    return this._repository.getData<ApiResponse<CityDto[]>>(`city/admin/get-cities-by-province-id/${provinceId}`)
+    return this._repository.getData<ApiResponse<CityDto[]>>(`city/get-cities-by-province-id/${provinceId}`)
   }
 }
