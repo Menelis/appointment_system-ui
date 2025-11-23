@@ -11,11 +11,15 @@ import {
 import {OAuthModule} from 'angular-oauth2-oidc';
 import { HomeComponent } from './home/home.component';
 import {httpInterceptor} from './core/intercepters/http.interceptor';
+import { CallbackComponent } from './callback/callback.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    CallbackComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,
