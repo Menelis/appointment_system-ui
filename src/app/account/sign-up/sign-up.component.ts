@@ -28,7 +28,7 @@ export class SignUpComponent implements OnInit {
       lastName: new FormControl('', [Validators.required, Validators.maxLength(100)]),
       email: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.email]),
       contactNo: new FormControl('', [Validators.maxLength(20)]),
-      password: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+      password: new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(6)]),
       confirmPassword: new FormControl('', [Validators.required])
     }, { validators: this._genericValidation.matchValidator('password', 'confirmPassword')});
   }
@@ -47,7 +47,6 @@ export class SignUpComponent implements OnInit {
         .subscribe({
           next: (response) => {
             let apiResponse: ApiResponse<any> = (response as ApiResponse<any>);
-            console.log(apiResponse);
             this.success = true;
             this.responseMessage = apiResponse.message;
           },
