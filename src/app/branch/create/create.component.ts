@@ -46,10 +46,12 @@ export class CreateComponent implements OnInit {
         faxNo: newBranchFormValue.faxNo,
         landLine: newBranchFormValue.landLine
       };
-      console.log(createBranchRequest);
       this._branchService.createBranch(createBranchRequest).subscribe({
         next: (response) => {
-          this._router.navigate(['/branch/list']);
+          console.log(response.success);
+          if(response.success) {
+            this._router.navigate(['/branch/list']);
+          }
         },
         error: (error) => {
 

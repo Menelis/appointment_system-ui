@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {APP_CONFIG_TOKEN, AppConfig} from '../models/app-config';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ export class RepositoryService {
     this.resourceServerEndpoint = appConfig.resourceServer.endPoint;
   }
 
-  public getData<T>(route: string) {
-    return this._http.get<T>(this.createCompleteRoute(route));
+  public getData<T>(route: string, httpParams?: HttpParams) {
+    return this._http.get<T>(this.createCompleteRoute(route), { params: httpParams });
   }
   public create<T> (route: string, body: any)  {
     return this._http.post<T>(this.createCompleteRoute(route), body);

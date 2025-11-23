@@ -1,0 +1,75 @@
+<div class="card">
+  <div class="card-header">
+    <div class="card-title fw-bold text-center">
+      {{ cardTitle }}
+    </div>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="appointmentFormGroup" novalidate autocomplete="off" (ngSubmit)="emitEvent()">
+      <div class="input-group mb-3">
+        <span class="input-group-text required fw-bold">Province:</span>
+        <select class="form-control" formControlName="provinceId" (change)="onSelectedProvince($any($event.target).value)">
+          <option selected disabled value="">Please select</option>
+          <option *ngFor="let province of provinces" [value]="province.id">
+            {{ province.name }}
+          </option>
+        </select>
+      </div>
+      <span class="text-danger" *ngIf="_genericValidation.validateControl(appointmentFormGroup, 'provinceId') && _genericValidation.hasError(appointmentFormGroup, 'provinceId', 'required')">Province is required</span>
+      <div class="input-group mb-3">
+        <span class="input-group-text required fw-bold">City:</span>
+        <select class="form-control" formControlName="cityId" (change)="onSelectedCity($any($event.target).value)">
+          <option selected disabled value="">Please select</option>
+          <option *ngFor="let city of cities" [value]="city.id">
+            {{ city.name }}
+          </option>
+        </select>
+      </div>
+      <span class="text-danger" *ngIf="_genericValidation.validateControl(appointmentFormGroup, 'cityId') && _genericValidation.hasError(appointmentFormGroup, 'cityId', 'required')">City is required</span>
+      <div class="input-group mb-3">
+        <span class="input-group-text required fw-bold">Branch:</span>
+        <select class="form-control" formControlName="branchId">
+          <option selected disabled value="">Please select</option>
+          <option *ngFor="let branch of branches" [value]="branch.id">
+            {{ branch.name }}
+          </option>
+        </select>
+      </div>
+      <span class="text-danger" *ngIf="_genericValidation.validateControl(appointmentFormGroup, 'branchId') && _genericValidation.hasError(appointmentFormGroup, 'branchId', 'required')">Branch is required</span>
+      <div class="input-group mb-3">
+        <span class="input-group-text required fw-bold">Appointment Date:</span>
+        <input
+          class="form-control"
+          placeholder="yyyy-mm-dd"
+          name="db"
+          formControlName="appointmentDate"
+          ngbDatepicker
+          #d="ngbDatepicker"
+          [minDate]="minDate"
+          [markDisabled]="markDisabled"
+          readonly
+        />
+        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+      </div>
+      <span class="text-danger" *ngIf="_genericValidation.validateControl(appointmentFormGroup, 'appointmentDate') && _genericValidation.hasError(appointmentFormGroup, 'appointmentDate', 'required')">Appointment Date is required</span>
+      <div class="input-group mb-3">
+        <span class="input-group-text fw-bold">Slot:</span>
+        <select class="form-control" formControlName="slotId">
+          <option selected disabled value="">Please select</option>
+          <option *ngFor="let slot of slots" [value]="slot.id">
+            {{ slot.slotStart }} - {{ slot.slotEnd }}
+          </option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text fw-bold">Appointment Info:</span>
+        <textarea class="form-control" rows="4" formControlName="description"></textarea>
+        <span class="text-danger" *ngIf="_genericValidation.validateControl(appointmentFormGroup, 'description') && _genericValidation.hasError(appointmentFormGroup, 'description', 'maxlength')">Description cannot exceed 500 characters</span>
+      </div>
+      <div class="col-md-12 text-end">
+        <button class="btn btn-primary" type="submit" [disabled]="!appointmentFormGroup.valid">Submit</button>
+        <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

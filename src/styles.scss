@@ -1,4 +1,5 @@
-.mb-3.required label:after {
+
+.input-group-text.required::after {
   content: "*";
   color: #ff0000;
 }

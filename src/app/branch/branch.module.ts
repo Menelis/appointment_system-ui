@@ -7,6 +7,7 @@ import { CreateComponent } from './create/create.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { CreateUpdateBranchComponent } from './create-update-branch/create-update-branch.component';
 import { EditComponent } from './edit/edit.component';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { EditComponent } from './edit/edit.component';
   imports: [
     CommonModule,
     BranchRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class BranchModule { }

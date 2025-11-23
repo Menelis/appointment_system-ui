@@ -1,33 +1,55 @@
-<div class="navbar navbar-expand-lg ps-4 shadow-lg shadow">
-  <a class="navbar-brand text-black" routerLink="/">Appointment System</a>
-  <div class="dropdown ms-auto mb-2 mb-lg-1" *ngIf="isAuthenticated">
-    <a class="btn bg-white dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      {{ fullName }}
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <li>
-        <a class="dropdown-item" (click)="signOut()">Sign Out</a>
-      </li>
-    </ul>
-  </div>
-  <div class="mb-2 mb-lg-1 ms-auto" *ngIf="!isAuthenticated">
-    <a routerLink="/account/sign-up" class="text-black text-decoration-none">
-      <i class="bi bi-person-fill-up"></i>
-      Sign Up</a>
-    <a routerLink="/account/sign-in" class="text-black text-decoration-none">
-      <i class="bi bi-lock-fill"></i>
-      Sign In</a>
-  </div>
-</div>
-<div class="container-fluid">
-  <div class="row vh-100 overflow-auto">
-    <div class="col-12 col-sm-3 col-xl-3 px-0 d-flex sticky-top shadow-lg" *ngIf="isAuthenticated">
-      Left menu here
+<header class="py-3 mb-4 border-bottom shadow-lg">
+  <div class="container-fluid align-items-center d-flex">
+    <div class="flex-shrink-1">
+      <a routerLink="/" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none">
+        <img src="capitec-logo.svg"/>
+      </a>
     </div>
-    <div class="col d-flex flex-column h-sm-100">
-      <main class="row overflow-auto pt-4">
+    <div class="flex-grow-1 d-flex align-items-center">
+      <div class="w-100 mb-3">
+        <a class="navbar-brand text-black fw-bold" routerLink="/">Appointment System</a>
+      </div>
+      <div *ngIf="isAuthenticated" class="flex-shrink-0 dropdown ">
+        <a class="btn bg-white dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ fullName }}</a>
+        <ul class="dropdown-menu dropdown-menu-end shadow" aria-describedby="dropdownMenuLink">
+          <li>
+            <a class="dropdown-item" (click)="signOut()">Sign Out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container-fluid pb-3 flex-grow-1 d-flex flex-column flex-sm-row overflow-auto">
+  <div class="row flex-sm-grow-1 flex-grow-0">
+    <aside class="col-sm-3 flex-grow-sm-1 flex-shrink-1 flex-grow-0 sticky-top pb-sm-0 pb-3" *ngIf="isAuthenticated">
+      <div class="bg-light border rounded-3 p-1 h-100 sticky-top">
+        <ul class="nav nav-pills flex-sm-column flex-row mb-auto justify-content-between text-truncate">
+          <li class="nav-item">
+            <a class="nav-link px-2 text-truncate" routerLink="/">
+              <i class="bi bi-house fs-5"></i>
+              Home
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="isAdmin">
+            <a class="nav-link px-2 text-truncate" routerLink="/branch/list">
+              <i class="bi bi-bank fs-5"></i>
+              Branch
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-2 text-truncate" routerLink="/appointment/list">
+              <i class="bi bi-calendar3 fs-5"></i>
+              Appointment
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <main class="col overflow-auto h-100">
+      <div class="bg-light border rounded-3 p-3">
         <router-outlet/>
-      </main>
-    </div>
+      </div>
+    </main>
   </div>
 </div>

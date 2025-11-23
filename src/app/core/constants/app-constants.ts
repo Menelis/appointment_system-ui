@@ -11,4 +11,10 @@ export const RoleConstants  = {
    * Role constant for users.
    */
   USER_ROLE: 'USER'
+
+}
+
+export const AppConstants  = {
+  PAGE_NO: 'pageNo',
+  PAGE_SIZE: 'pageSize'
 }

@@ -13,6 +13,7 @@ export class AppComponent {
   title = 'appointment-system-ui';
   isAuthenticated = this.authService.isAuthenticated;
   fullName = this.authService.fullName;
+  isAdmin = this.authService.isAdmin;
   signOut = () => {
     this.authService.signOut()
   }

@@ -6,72 +6,71 @@
   </div>
   <div class="card-body">
     <form [formGroup]="branchFormGroup" novalidate autocomplete="off" (ngSubmit)="emitEvent()">
-      <div class="md-3 required">
-        <label>Name:</label>
+      <div class="input-group mb-3">
+        <span class="input-group-text required fw-bold">Name:</span>
         <input type="text" class="form-control" formControlName="branchName">
-        <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'branchName', 'required') && _genericValidation.validateControl(branchFormGroup, 'branchName')">Branch Name is required</span>
-        <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'branchName', 'maxlength') && _genericValidation.validateControl(branchFormGroup,'branchName')">Only 100 characters are allowed for Branch Name</span>
       </div>
-      <div class="md-3 required">
-        <label>Email Address:</label>
+      <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'branchName', 'required') && _genericValidation.validateControl(branchFormGroup, 'branchName')">Branch Name is required</span>
+      <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'branchName', 'maxlength') && _genericValidation.validateControl(branchFormGroup,'branchName')">Only 100 characters are allowed for Branch Name</span>
+      <div class="input-group mb-3">
+        <span class="input-group-text required fw-bold">Email Address:</span>
         <input type="text" class="form-control" formControlName="emailAddress">
-        <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'emailAddress', 'required') && _genericValidation.validateControl(branchFormGroup, 'emailAddress')">Email is required</span>
-        <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'emailAddress', 'maxlength') && _genericValidation.validateControl(branchFormGroup, 'emailAddress')">Only 100 characters are allowed for Email</span>
-        <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'emailAddress', 'email') && _genericValidation.validateControl(branchFormGroup, 'emailAddress')">Invalid Email format</span>
       </div>
-      <div class="md-3 required">
-        <label>Land Line:</label>
+      <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'emailAddress', 'required') && _genericValidation.validateControl(branchFormGroup, 'emailAddress')">Email is required</span>
+      <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'emailAddress', 'maxlength') && _genericValidation.validateControl(branchFormGroup, 'emailAddress')">Only 100 characters are allowed for Email</span>
+      <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'emailAddress', 'email') && _genericValidation.validateControl(branchFormGroup, 'emailAddress')">Invalid Email format</span>
+      <div class="input-group mb-3">
+        <span class="input-group-text required fw-bold">Land Line:</span>
         <input type="text" class="form-control" formControlName="landLine">
-        <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'landLine', 'required') && _genericValidation.validateControl(branchFormGroup, 'landLine')">Land Line is required</span>
-        <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'landLine', 'maxlength') && _genericValidation.validateControl(branchFormGroup, 'landLine')">Only 20 characters are allowed for Land Line</span>
       </div>
-      <div class="md-3 required">
-        <label>Fax No:</label>
+      <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'landLine', 'required') && _genericValidation.validateControl(branchFormGroup, 'landLine')">Land Line is required</span>
+      <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'landLine', 'maxlength') && _genericValidation.validateControl(branchFormGroup, 'landLine')">Only 20 characters are allowed for Land Line</span>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Fax No:</span>
         <input type="text" class="form-control" formControlName="faxNo">
-        <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'faxNo', 'maxlength') && _genericValidation.validateControl(branchFormGroup, 'faxNo')">Only 20 characters are allowed for Fax No</span>
       </div>
-      <div class="md-3 required">
-        <label>Street No:</label>
+      <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'faxNo', 'maxlength') && _genericValidation.validateControl(branchFormGroup, 'faxNo')">Only 20 characters are allowed for Fax No</span>
+      <div class="input-group mb-3">
+        <span class="input-group-text required fw-bold">Street No:</span>
         <input type="text" class="form-control" formControlName="streetNo">
-        <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'streetNo', 'required') && _genericValidation.validateControl(branchFormGroup, 'streetNo')">Street No is required</span>
-        <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'streetNo', 'maxlength') && _genericValidation.validateControl(branchFormGroup, 'streetNo')">Only 50 characters are allowed for Street No</span>
       </div>
-      <div class="md-3 required">
-        <label>Address Line 1:</label>
+      <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'streetNo', 'required') && _genericValidation.validateControl(branchFormGroup, 'streetNo')">Street No is required</span>
+      <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'streetNo', 'maxlength') && _genericValidation.validateControl(branchFormGroup, 'streetNo')">Only 50 characters are allowed for Street No</span>
+      <div class="input-group mb-3">
+        <span class="input-group-text fw-bold">Address Line 1:</span>
         <input type="text" class="form-control" formControlName="addressLine1">
-        <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'addressLine1', 'maxlength') && _genericValidation.validateControl(branchFormGroup, 'addressLine1')">Only 255 characters are allowed for Address Line 1</span>
       </div>
-      <div class="md-3 required">
-        <label>Address Line 2:</label>
+      <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'addressLine1', 'maxlength') && _genericValidation.validateControl(branchFormGroup, 'addressLine1')">Only 255 characters are allowed for Address Line 1</span>
+      <div class="input-group mb-3">
+        <span class="input-group-text fw-bold">Address Line 2:</span>
         <input type="text" class="form-control" formControlName="addressLine2">
-        <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'addressLine2', 'maxlength') && _genericValidation.validateControl(branchFormGroup, 'addressLine1')">Only 255 characters are allowed for Address Line 2</span>
       </div>
-      <div class="md-3 required">
-        <label>Province:</label>
+      <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'addressLine2', 'maxlength') && _genericValidation.validateControl(branchFormGroup, 'addressLine1')">Only 255 characters are allowed for Address Line 2</span>
+      <div class="input-group mb-3">
+        <span class="input-group-text required fw-bold">Province:</span>
         <select class="form-control" formControlName="provinceId" (change)="onSelectedProvince($any($event.target).value)">
           <option selected disabled value="">Please select</option>
           <option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</option>
         </select>
-        <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'provinceId', 'required') && _genericValidation.validateControl(branchFormGroup, 'provinceId')">Province is required</span>
       </div>
-      <div class="md-3 required">
-        <label>City:</label>
+      <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'provinceId', 'required') && _genericValidation.validateControl(branchFormGroup, 'provinceId')">Province is required</span>
+      <div class="mb-3 input-group">
+        <span class="input-group-text required fw-bold">City:</span>
         <select class="form-control" formControlName="cityId">
           <option selected disabled value="">Please select</option>
           <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
         </select>
-        <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'cityId', 'required') && _genericValidation.validateControl(branchFormGroup, 'cityId')">City is required</span>
       </div>
-      <div class="md-3 required">
-        <label>Postal Code:</label>
+      <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'cityId', 'required') && _genericValidation.validateControl(branchFormGroup, 'cityId')">City is required</span>
+      <div class="mb-3 input-group">
+        <span class="input-group-text required fw-bold">Postal Code:</span>
         <input type="text" class="form-control" formControlName="postalCode">
-        <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'postalCode', 'required') && _genericValidation.validateControl(branchFormGroup, 'postalCode')">Postal Code is required</span>
-        <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'postalCode', 'maxlength') && _genericValidation.validateControl(branchFormGroup, 'postalCode')">Only 10 characters are allowed for Postal Code</span>
       </div>
-      <br/>
+      <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'postalCode', 'required') && _genericValidation.validateControl(branchFormGroup, 'postalCode')">Postal Code is required</span>
+      <span class="text-danger" *ngIf="_genericValidation.hasError(branchFormGroup, 'postalCode', 'maxlength') && _genericValidation.validateControl(branchFormGroup, 'postalCode')">Only 10 characters are allowed for Postal Code</span>
       <div class="col-md-12 text-end">
-        <button class="btn btn-primary" type="submit" [disabled]="!branchFormGroup.valid">Submit</button>
-        <button class="btn btn-secondary" type="button" (click)="cancel()">Cancel</button>
+        <button class="btn btn-primary rounded-pill" type="submit" [disabled]="!branchFormGroup.valid">Submit</button>
+        <button class="btn btn-secondary rounded-pill" type="button" (click)="cancel()">Cancel</button>
       </div>
     </form>
   </div>

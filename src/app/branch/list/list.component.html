@@ -5,7 +5,7 @@
       </div>
       <div class="card-body">
         <div class="text-end">
-          <a class="btn btn-primary" routerLink="/branch/create"><i class="bi bi-plus-square-fill"></i> New</a>
+          <a class="btn btn-primary rounded-pill" routerLink="/branch/create"><i class="bi bi-plus-square-fill fs-3"></i></a>
         </div>
         <br/>
         <table class="table table-bordered">
@@ -25,11 +25,23 @@
               <td>{{ branch?.province?.name }}</td>
               <td>{{ branch?.city?.name }}</td>
               <td colspan="2">
-                <button class="btn btn-primary" type="button" (click)="routeToEdit(branch.id)"><i class="bi bi-pencil-square"></i> Edit</button>
-                <button class="btn btn-danger"><i class="bi bi-recycle"></i> Delete</button>
+                <button class="btn btn-primary rounded-pill" type="button" (click)="routeToEdit(branch.id)"><i class="bi bi-pencil-square fs-5"></i></button>
+                <button class="btn btn-danger rounded-pill"><i class="bi bi-recycle fs-5"></i></button>
               </td>
             </tr>
           </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="6">
+              <ngb-pagination
+                              [page]="pagedBranchResult.data.page.number + 1"
+                              [collectionSize]="pagedBranchResult.data.page.totalElements"
+                              [pageSize]="pagedBranchResult.data.page.size"
+                              [boundaryLinks]="true"
+                              (pageChange)="onSelectedPageChange($event)"></ngb-pagination>
+            </td>
+          </tr>
+          </tfoot>
         </table>
       </div>
     </div>
