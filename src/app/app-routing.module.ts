@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import { authGuard } from './core/guard/auth.guard';
 import { adminGuard } from './core/guard/admin.guard';
+import {CallbackComponent} from './callback/callback.component';
+import {ForbiddenComponent} from './forbidden/forbidden.component';
 
 const routes: Routes = [
   {
@@ -27,6 +29,14 @@ const routes: Routes = [
     path: 'appointment',
     loadChildren:() => import('./appointment/appointment.module').then(module => module.AppointmentModule),
     canActivate:[authGuard]
+  },
+  {
+    path: 'callback',
+    component: CallbackComponent
+  },
+  {
+    path: 'forbidden',
+    component: ForbiddenComponent
   }
 ];
 
