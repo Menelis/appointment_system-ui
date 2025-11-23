@@ -18,3 +18,8 @@ export const AppConstants  = {
   PAGE_NO: 'pageNo',
   PAGE_SIZE: 'pageSize'
 }
+
+export const AppointmentStatus = {
+  BOOKING_CONFIRMED: 'CONFIRMED',
+  BOOKING_CANCELLED: 'CANCELLED'
+}
