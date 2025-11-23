@@ -22,6 +22,10 @@ export class AppointmentService {
     return this._repository.update<ApiResponse<any>>(`appointment/update/${id}`, updateAppointmentRequest);
   }
 
+  public updateAppointmentStatus = (updateStatus: any) => {
+    return this._repository.create<ApiResponse<any>>('appointment/update-status', updateStatus);
+  }
+
   public getPaginatedAppointments= (pageNo: number, pageSize: number) => {
     let apiEndPoint = this._authService.isAdmin ? 'appointment/admin/get-all-appointments' : 'appointment/customer/get-all-appointments';
     return this._repository.getData<PagedResult<AppointmentDto[]>>(apiEndPoint, getPaginationHttpParams(pageNo, pageSize));
