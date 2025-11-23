@@ -15,24 +15,27 @@ export class AuthService {
 
   private authUrl!: string | undefined;
   constructor(@Inject(APP_CONFIG_TOKEN) appConfig: AppConfig,
-              private oauthService: OAuthService,
-              private http: HttpClient) {
-    this.oauthService.configure(appConfig.authServer);
-    this.oauthService.loadDiscoveryDocumentAndTryLogin();
+              private _oauthService: OAuthService,
+              private _http: HttpClient) {
+    this._oauthService.configure(appConfig.authServer);
+    this._oauthService.loadDiscoveryDocumentAndTryLogin();
     this.authUrl = appConfig.authServer.issuer;
   }
 
   signIn = () => {
-    this.oauthService.initCodeFlow();
+    this._oauthService.initCodeFlow();
   }
   signUp = (signUpRequest: SignUpDto) => {
-    return this.http.post(`${this.authUrl}/api/v1/auth/sign-up`, signUpRequest);
+    return this._http.post(`${this.authUrl}/api/v1/auth/sign-up`, signUpRequest);
   }
   signOut = () => {
-    this.oauthService.logOut();
+    this._oauthService.logOut();
+  }
+  refreshToken = () => {
+    this._oauthService.refreshToken();
   }
   get isAuthenticated(): boolean {
-    return this.oauthService.hasValidAccessToken();
+    return this._oauthService.hasValidAccessToken();
   }
   get fullName() {
     let decodedToken = this.getDecodedToken()
@@ -65,6 +68,6 @@ export class AuthService {
     return this.userRoles.includes(RoleConstants.USER_ROLE);
   }
   get accessToken() {
-    return this.oauthService.getAccessToken();
+    return this._oauthService.getAccessToken();
   }
 }
