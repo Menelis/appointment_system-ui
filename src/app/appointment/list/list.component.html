@@ -5,7 +5,7 @@
     </div>
     <div class="card-body">
       <div class="text-end">
-        <a class="btn btn-primary rounded-pill" routerLink="/appointment/create"><i class="bi bi-plus-square-fill fs-4"></i></a>
+        <a class="btn btn-primary rounded-pill" routerLink="/appointment/create">New Appointment</a>
       </div>
       <br/>
       <table class="table table-bordered">
@@ -23,13 +23,14 @@
         <tr *ngFor="let appointment of pagedAppointmentResult?.data?.content">
           <td>{{ appointment.referenceNo }}</td>
           <td>{{ appointment?.user?.fullName }}</td>
-          <td>{{ appointment.appointmentDate }} {{ appointment.slot.slotStart }} - {{ appointment.slot.slotEnd }}</td>
+          <td>{{ appointment.appointmentDate }} {{ getSlotFormatedString(appointment.slot) }}</td>
           <td>{{ appointment.status }}</td>
           <td>{{ appointment?.branch?.name }}</td>
           <td colspan="3">
             <a class="btn btn-primary rounded-pill">
               <i class="bi bi-pencil fs-6"></i>
             </a>
+            <button class="btn btn-primary rounded-pill {{hideButton(appointment, AppointmentStatus.BOOKING_CONFIRMED)}}" (click)="updateStatusModal(appointment, AppointmentStatus.BOOKING_CONFIRMED)"><i class="bi bi-check-circle-fill"></i> Confirm</button>
           </td>
         </tr>
         </tbody>
@@ -39,7 +40,7 @@
             <ngb-pagination
               [collectionSize]="pagedAppointmentResult.data.page.totalElements"
               [page]="pagedAppointmentResult.data.page.number + 1"
-              [pageSize]="pagedAppointmentResult.data.page.totalPages"
+              [pageSize]="pagedAppointmentResult.data.page.size"
               (pageChange)="onPageSelectChange($event)"></ngb-pagination>
           </td>
         </tr>
