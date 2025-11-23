@@ -67,8 +67,8 @@
         <span class="text-danger" *ngIf="_genericValidation.validateControl(appointmentFormGroup, 'description') && _genericValidation.hasError(appointmentFormGroup, 'description', 'maxlength')">Description cannot exceed 500 characters</span>
       </div>
       <div class="col-md-12 text-end">
-        <button class="btn btn-primary" type="submit" [disabled]="!appointmentFormGroup.valid">Submit</button>
-        <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+        <button class="btn btn-primary rounded-pill" type="submit" [disabled]="!appointmentFormGroup.valid">Submit</button>
+        <button type="button" class="btn btn-secondary rounded-pill" (click)="cancel()">Cancel</button>
       </div>
     </form>
   </div>
