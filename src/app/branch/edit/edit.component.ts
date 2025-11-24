@@ -38,7 +38,6 @@ export class EditComponent implements OnInit {
     this._branchService.getBranchById(this.id).subscribe({
       next: (response) => {
         this.branch = response.data;
-        console.log(this.branch);
         this.updateBranchForm.patchValue({
           branchName: this.branch.name,
           emailAddress: this.branch.email,
