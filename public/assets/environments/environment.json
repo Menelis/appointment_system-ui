@@ -17,6 +17,6 @@
     "endPoint": "http://localhost:9001/api/v1"
   },
   "defaultUiSettings": {
-    "pageSize": 2
+    "pageSize": 10
   }
 }

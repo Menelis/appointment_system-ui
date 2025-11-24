@@ -5,7 +5,9 @@ import {NgbCalendar, NgbDate, NgbDatepickerModule, NgbDateStruct} from '@ng-boot
  */
 export function getDateInStringFormat(dateValue: any) {
   if(dateValue) {
-    return `${dateValue.year}-${dateValue.month}-${dateValue.day}`;
+    let month: String =  dateValue.month < 10 ? `0${dateValue.month}` : dateValue.month;
+    let day: string = dateValue.day < 10 ? `0${dateValue.day}` : dateValue.day;
+    return `${dateValue.year}-${month}-${day}`;
   }
   return '';
 }

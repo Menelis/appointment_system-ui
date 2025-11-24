@@ -22,10 +22,27 @@ export class SweetAlertService {
     return Swal.fire({
       title: title,
       text: text,
-      showConfirmButton: true,
+      icon: "question",
       showCancelButton: true,
       cancelButtonText: cancelButtonText || 'No',
       confirmButtonText: confirmButtonText || 'Yes'
+    });
+  }
+  confirmationDialogWithMessage = (title: string, cancelButtonText?: string, confirmButtonText?: string) => {
+    return Swal.fire({
+      title: title,
+      input: "textarea",
+      inputPlaceholder: 'Enter a reason here',
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: cancelButtonText || 'No',
+      confirmButtonText: confirmButtonText || 'Yes',
+      inputValidator: ((value) => {
+        if(!value) {
+          return 'Reason is required'
+        }
+        return null;
+      })
     });
   }
   /**
@@ -52,4 +69,6 @@ export class SweetAlertService {
       icon: "error"
     });
   }
+
+
 }

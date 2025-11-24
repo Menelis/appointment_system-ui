@@ -26,12 +26,16 @@
           <td>{{ appointment.appointmentDate }} {{ getSlotFormatedString(appointment.slot) }}</td>
           <td>{{ appointment.status }}</td>
           <td>{{ appointment?.branch?.name }}</td>
-          <td colspan="3">
-            <a class="btn btn-primary rounded-pill">
-              <i class="bi bi-pencil fs-6"></i>
-            </a>
-            <button class="btn btn-primary rounded-pill {{hideButton(appointment, AppointmentStatus.BOOKING_CONFIRMED)}}" (click)="updateStatusModal(appointment, AppointmentStatus.BOOKING_CONFIRMED)"><i class="bi bi-check-circle-fill"></i> Confirm</button>
+          <td colspan="3" *ngIf="canConfirmBooking">
+            <button class="btn btn-primary rounded-pill {{hideButton(appointment, [AppointmentStatus.BOOKING_CONFIRMED, AppointmentStatus.BOOKING_CANCELLED])}}" (click)="updateStatusModal(appointment, AppointmentStatus.BOOKING_CONFIRMED)"><i class="bi bi-check-circle-fill fs-6"></i> Confirm</button>
+            <button class="btn btn-danger rounded-pill {{hideButton(appointment, [AppointmentStatus.BOOKING_CANCELLED])}}" (click)="cancelStatusModal(appointment)"><i class="bi bi-x-circle fs-6"></i> Cancel</button>
           </td>
+          <td colspan="3" *ngIf="!canConfirmBooking">
+            <button class="btn btn-danger rounded-pill" (click)="cancelStatusModal(appointment)"><i class="bi bi-x-circle fs-6"></i> Cancel</button>
+          </td>
+        </tr>
+        <tr *ngIf="pagedAppointmentResult.data.content.length === 0">
+          <td colspan="8" class="text-center">No appointments created yet.</td>
         </tr>
         </tbody>
         <tfoot>
