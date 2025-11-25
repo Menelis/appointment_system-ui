@@ -25,7 +25,7 @@ This will compile your project and store the build artifacts in the `dist/` dire
 - Config
 ```json
 {
-  "production": false, // Must be true for production
+  "production": false
   "authServer": {
     "issuer": "http://auth-server:9000",
     "clientId": "{oidc client}",
