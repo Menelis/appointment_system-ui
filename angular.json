@@ -27,6 +27,9 @@
             "outputPath": "dist/appointment-system-ui",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "sweetalert2"
+            ],
             "polyfills": [
               "zone.js",
               "@angular/localize/init"

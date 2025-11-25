@@ -7,7 +7,8 @@ USER root
 COPY appointment_ui_nginx.config /etc/nginx/conf.d/default.conf
 
 #### Copy artifact build
-COPY dist/appointment-system-ui /app
+##COPY dist/appointment-system-ui /app
+COPY dist/appointment-system-ui/browser /app
 
 # Setup unprivileged user 1001
 RUN chown -R 1001 /app
