@@ -26,7 +26,7 @@ export class SignUpComponent implements OnInit {
     this.signUpForm = new FormGroup({
       firstName: new FormControl('', [Validators.required, Validators.maxLength(100)]),
       lastName: new FormControl('', [Validators.required, Validators.maxLength(100)]),
-      email: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.email]),
+      email: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.email]),
       contactNo: new FormControl('', [Validators.maxLength(20)]),
       password: new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(6)]),
       confirmPassword: new FormControl('', [Validators.required])
@@ -47,7 +47,7 @@ export class SignUpComponent implements OnInit {
         .subscribe({
           next: (response) => {
             let apiResponse: ApiResponse<any> = (response as ApiResponse<any>);
-            this.success = true;
+            this.success = apiResponse.success;
             this.responseMessage = apiResponse.message;
           },
           error: (error) => {

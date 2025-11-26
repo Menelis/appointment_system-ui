@@ -26,7 +26,7 @@
             <input typeof="text" class="form-control" formControlName="email">
           </div>
           <span class="text-danger" *ngIf="_genericValidation.hasError(signUpForm, 'email', 'required') && _genericValidation.validateControl(signUpForm, 'email')">Email is required</span>
-          <span class="text-danger" *ngIf="_genericValidation.hasError(signUpForm, 'email', 'maxlength') && _genericValidation.validateControl(signUpForm, 'email')">Only 100 characters allowed for Email</span>
+          <span class="text-danger" *ngIf="_genericValidation.hasError(signUpForm, 'email', 'maxlength') && _genericValidation.validateControl(signUpForm, 'email')">Only 50 characters allowed for Email</span>
           <span class="text-danger" *ngIf="_genericValidation.hasError(signUpForm, 'email', 'email') && _genericValidation.validateControl(signUpForm, 'email')">Invalid Email format.</span>
           <div class="input-group mb-3">
             <span class="input-group-text">Contact Number:</span>
@@ -50,9 +50,7 @@
             <button class="btn btn-primary rounded-pill w-100" type="submit" [disabled]="!signUpForm.valid">Sign Up</button>
             <button class="btn btn-secondary rounded-pill w-100" (click)="cancel()" type="button">Cancel</button>
           </div>
-          <div class="col-ms-12">
-            <span [ngClass]="success ? 'text-success' : 'text-danger'" >{{ responseMessage }}</span>
-          </div>
+          <app-response-message [success]="success" [message]="responseMessage"></app-response-message>
         </form>
       </div>
     </div>

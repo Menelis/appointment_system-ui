@@ -4,11 +4,11 @@
       <p class="text-center" *ngIf="!isAuthenticated">
         Welcome to Appointment System.
         To make a branch appointment please <a routerLink="/account/sign-up" class="btn btn-primary rounded-pill">
-        <i class="bi bi-box-arrow-up fs-5"></i>
+        <i class="bi bi-box-arrow-up"></i>
         Sign Up</a> if you have not registered
         or <a routerLink="/account/sign-in" class="btn btn-primary rounded-pill">
-        <i class="bi bi-box-arrow-right fs-5"></i> Sign In
-      </a> to make an appointment
+        <i class="bi bi-box-arrow-right"></i> Sign In
+      </a> to make an appointment. If you are an existing user and you have forgotten your password click <a routerLink="/account/forgot-password" class="btn btn-primary  rounded-pill"><i class="bi bi-eye-slash"></i> here</a> for password reset.
       </p>
       <div class="row" *ngIf="isAuthenticated">
         <div class="col-12">
