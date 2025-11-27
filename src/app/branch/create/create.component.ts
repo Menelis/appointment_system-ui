@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BranchService} from '../../core/services/branch.service';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {BranchDto} from '../../core/models/dto/branch-dto';
+import {CityDto} from '../../core/models/dto/city-dto';
 
 @Component({
   selector: 'app-create',
@@ -13,6 +13,7 @@ import {BranchDto} from '../../core/models/dto/branch-dto';
 export class CreateComponent implements OnInit {
 
   newBranchForm!: FormGroup;
+  cities: CityDto[] = [];
 
   constructor(private _branchService: BranchService,
               private _router: Router) {
@@ -53,9 +54,7 @@ export class CreateComponent implements OnInit {
             this._router.navigate(['/branch/list']);
           }
         },
-        error: (error) => {
-
-        }
+        error: (error) => {}
       })
     }
   }
