@@ -1,7 +1,8 @@
 <div class="row">
   <div class="col-md-8 mx-auto">
     <app-create-update-branch
-      [branchFormGroup]="newBranchForm"  [cardTitle]="'New Branch'" (onSubmit)="onSubmit()">
+      [branchFormGroup]="newBranchForm"  [cardTitle]="'New Branch'" (onSubmit)="onSubmit()"
+    [cities]="cities">
     </app-create-update-branch>
   </div>
 </div>
