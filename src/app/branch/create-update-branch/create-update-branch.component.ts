@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, input, OnInit, Output} from '@angular/core';
 import {GenericValidationService} from '../../core/services/generic-validation.service';
 import {FormGroup} from '@angular/forms';
-import {BranchService} from '../../core/services/branch.service';
 import {ProvinceDto} from '../../core/models/dto/province-dto';
 import {CityDto} from '../../core/models/dto/city-dto';
 import {Router} from '@angular/router';
@@ -18,10 +17,10 @@ export class CreateUpdateBranchComponent implements OnInit {
 
   @Input() public cardTitle!: string;
   @Input() branchFormGroup!: FormGroup;
+  @Input() public cities!: CityDto[]
   @Output() public onSubmit = new EventEmitter();
 
   provinces!: ProvinceDto[];
-  cities!: CityDto[];
   constructor(public _genericValidation: GenericValidationService,
               private _router: Router,
               private _cityService: CityService,
