@@ -3,6 +3,9 @@
     <app-create-update-appointment
           [appointmentFormGroup]="newAppointmentFormGroup"
           [cardTitle]="'New Appointment'"
-          (onSubmit)="onSubmit()"></app-create-update-appointment>
+          [success]="success"
+          [responseMessage]="responseMessage"
+          (onSubmit)="onSubmit()"
+          ></app-create-update-appointment>
   </div>
 </div>

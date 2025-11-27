@@ -70,6 +70,7 @@
         <button class="btn btn-primary rounded-pill" type="submit" [disabled]="!appointmentFormGroup.valid">Submit</button>
         <button type="button" class="btn btn-secondary rounded-pill" (click)="cancel()">Cancel</button>
       </div>
+      <app-response-message [success]="success" [message]="responseMessage"></app-response-message>
     </form>
   </div>
 </div>

@@ -11,6 +11,5 @@ export class CallbackComponent implements OnInit {
   constructor(private _router: Router) {
   }
   ngOnInit(): void {
-    //this._router.navigate(['/']);
   }
 }

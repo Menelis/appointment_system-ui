@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AppointmentService} from '../../core/services/appointment.service';
 import {Router} from '@angular/router';
 import { getDateInStringFormat } from '../../core/util/date-util';
+import {finalize} from 'rxjs';
 
 
 @Component({
@@ -13,6 +14,9 @@ import { getDateInStringFormat } from '../../core/util/date-util';
 })
 export class CreateComponent implements OnInit {
   newAppointmentFormGroup!: FormGroup;
+  busy = false;
+  success = false;
+  responseMessage!: string;
 
   constructor(private _appointmentService: AppointmentService,
               private _router: Router) {}
@@ -36,14 +40,23 @@ export class CreateComponent implements OnInit {
          appointmentDate: getDateInStringFormat(newAppointmentFormGroupValue.appointmentDate)
        };
        console.log(newAppointment);
-       this._appointmentService.createAppointment(newAppointment).subscribe({
+       this._appointmentService.createAppointment(newAppointment).pipe(finalize(() => {
+         this.busy = true;
+       })).subscribe({
          next: (response) => {
            if(response.success) {
              this._router.navigate(['/appointment/list']);
            }
-           console.log(response.message);
+           this.success = response.success;
+           this.responseMessage = response.message;
+           this.busy = false;
+         },
+         error: (error) => {
+           this.success = false;
+           this.responseMessage = error.error.message;
+           this.busy = false;
          }
-       })
+       });
      }
     }
 }

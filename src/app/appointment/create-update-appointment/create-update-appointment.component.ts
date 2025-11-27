@@ -24,6 +24,9 @@ export class CreateUpdateAppointmentComponent implements OnInit {
 
   @Input() public cardTitle!: string;
   @Input() appointmentFormGroup!: FormGroup;
+  @Input() success!: boolean;
+  @Input() responseMessage!: string;
+  @Input() busy!: boolean
   @Output() public onSubmit = new EventEmitter();
   // Look up properties
   branches!: BranchDto[];

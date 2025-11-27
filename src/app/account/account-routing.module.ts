@@ -5,6 +5,7 @@ import {SignInComponent} from './sign-in/sign-in.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {EmailVerificationComponent} from './email-verification/email-verification.component';
+import {SignOutComponent} from './sign-out/sign-out.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'sign-out',
-    component: SignUpComponent
+    component: SignOutComponent
   },
   {
     path: 'reset-password',
