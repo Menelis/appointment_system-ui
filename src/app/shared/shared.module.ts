@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {NgbDatepickerModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDatepickerModule, NgbPaginationModule, NgbProgressbarModule} from '@ng-bootstrap/ng-bootstrap';
 import { ResponseMessageComponent } from './response-message/response-message.component';
 
 
@@ -12,12 +12,14 @@ import { ResponseMessageComponent } from './response-message/response-message.co
   imports: [
     CommonModule,
     NgbDatepickerModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    NgbProgressbarModule
   ],
   exports: [
     NgbDatepickerModule,
     NgbPaginationModule,
-    ResponseMessageComponent
+    ResponseMessageComponent,
+    NgbProgressbarModule
   ]
 })
 export class SharedModule { }
