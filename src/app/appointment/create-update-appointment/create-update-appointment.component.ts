@@ -27,12 +27,13 @@ export class CreateUpdateAppointmentComponent implements OnInit {
   @Input() success!: boolean;
   @Input() responseMessage!: string;
   @Input() busy!: boolean
+  @Input() cities!: CityDto[];
+  @Input() branches!: BranchDto[];
   @Output() public onSubmit = new EventEmitter();
+
   // Look up properties
-  branches!: BranchDto[];
   slots!: SlotDto[]
   provinces!: ProvinceDto[];
-  cities!: CityDto[];
   provinceId!: number;
   minDate!: NgbDateStruct;
 

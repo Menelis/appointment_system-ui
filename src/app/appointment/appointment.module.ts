@@ -8,6 +8,7 @@ import { CreateUpdateAppointmentComponent } from './create-update-appointment/cr
 import {ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
 import { DetailsComponent } from './details/details.component';
+import { EditComponent } from './edit/edit.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { DetailsComponent } from './details/details.component';
     ListComponent,
     CreateComponent,
     CreateUpdateAppointmentComponent,
-    DetailsComponent
+    DetailsComponent,
+    EditComponent
   ],
   imports: [
     CommonModule,
