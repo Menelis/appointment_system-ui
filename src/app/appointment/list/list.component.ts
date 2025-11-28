@@ -7,6 +7,8 @@ import {SlotDto} from '../../core/models/dto/slot-dto';
 import {AppointmentStatus} from '../../core/constants/app-constants';
 import { SweetAlertService } from '../../core/services/sweet-alert.service';
 import {AuthService} from '../../core/services/auth/auth.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {DetailsComponent} from '../details/details.component';
 
 @Component({
   selector: 'app-list',
@@ -22,7 +24,8 @@ export class ListComponent implements OnInit {
   constructor(private _appointmentService: AppointmentService,
               @Inject(APP_CONFIG_TOKEN) appConfig: AppConfig,
               private _sweetAlertService: SweetAlertService,
-              private _authService: AuthService) {
+              private _authService: AuthService,
+              private _modalService: NgbModal) {
     this.pageSize = appConfig.defaultUiSettings.pageSize;
     this.canConfirmBooking = this._authService.isUser || this._authService.isAdmin;
   }
@@ -84,6 +87,16 @@ export class ListComponent implements OnInit {
       return "d-none";
     }
     return "";
+  }
+  openDetailsModal = (appointment: AppointmentDto) => {
+    console.log(appointment);
+    const modalRef = this._modalService.open(
+      DetailsComponent,
+      {
+        size: "lg"
+      }
+    );
+    modalRef.componentInstance.appointmentDetails = appointment;
   }
   protected readonly AppointmentStatus = AppointmentStatus;
 }

@@ -1,0 +1,87 @@
+<div class="modal-header">
+  <h4 class="modal-title">Appointment Details</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-3">
+      <label class="fw-bold">Customer Name:</label>
+    </div>
+    <div class="col-9">
+      <label> {{ appointmentDetails?.user?.fullName }}</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <label class="fw-bold">Reference No:</label>
+    </div>
+    <div class="col-9">
+      <label> {{ appointmentDetails.referenceNo }}</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <label class="fw-bold">Appointment Date:</label>
+    </div>
+    <div class="col-9">
+      <label> {{ appointmentDetails.appointmentDate }}</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3">
+      <label class="fw-bold">Slot:</label>
+    </div>
+    <div class="col-9" *ngIf="appointmentDetails.slot">
+      <label> {{ appointmentDetails?.slot?.slotStart }} - {{ appointmentDetails?.slot?.slotEnd }}</label>
+    </div>
+    <div class="col-9" *ngIf="!appointmentDetails.slot">
+      <label>Any Time</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <label class="fw-bold">Status:</label>
+    </div>
+    <div class="col-9">
+      <label> {{ appointmentDetails.status }}</label>
+    </div>
+  </div>
+  <hr/>
+  <h4 class="modal-title">Branch Details:</h4>
+  <div class="row">
+    <div class="col-3">
+      <label class="fw-bold">Name:</label>
+    </div>
+    <div class="col-9">
+      <label> {{ appointmentDetails?.branch?.name }}</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <label class="fw-bold">Address:</label>
+    </div>
+    <div class="col-9">
+      <label> {{ appointmentDetails?.branch?.streetNo }}, {{ appointmentDetails?.branch?.addressLine1 }}</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <label class="fw-bold">Email:</label>
+    </div>
+    <div class="col-9">
+      <label> {{ appointmentDetails?.branch?.email }}</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <label class="fw-bold">Land Line:</label>
+    </div>
+    <div class="col-9">
+      <label> {{ appointmentDetails?.branch?.landLine }}</label>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary rounded-pill" (click)="activeModal.close()">Close</button>
+</div>
