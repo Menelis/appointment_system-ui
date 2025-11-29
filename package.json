@@ -1,6 +1,6 @@
 {
   "name": "appointment-system-ui",
-  "version": "1.0.1",
+  "version": "1.0.8",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
