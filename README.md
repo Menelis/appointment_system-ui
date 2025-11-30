@@ -93,3 +93,6 @@ configMap:
           - Pagination
           - Datepicker
           - [More](https://ng-bootstrap.github.io/#/components/accordion/overview)
+
+## Home Page Preview
+![Home Page](https://github.com/Menelis/appointment_system-ui/blob/main/Appointment%20-%20UI%20-%20v2.gif)
