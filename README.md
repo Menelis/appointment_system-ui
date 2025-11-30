@@ -6,7 +6,7 @@
    - Tag - ``1.0.8``
  - The configuration can be mounted into the pod to be externalized.
    - It must be on the file path ``/assets/environments/environment.json``
- - Snippet of ConfigMap for mounting pod
+ - Snippet of ConfigMap for external config
 ```yaml
 # ConfigMap template
 {{- if and .Values.configMap .Values.configMap.create -}}
