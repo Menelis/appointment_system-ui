@@ -6,14 +6,51 @@
    - Tag - ``1.0.8``
  - The configuration can be mounted into the pod to be externalized.
    - It must be on the file path ``/assets/environments/environment.json``
+ - Snippet of ConfigMap for mounting pod
+```yaml
+# ConfigMap template
+{{- if and .Values.configMap .Values.configMap.create -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMap.name }}
+data:
+  {{ .Values.configMap.dataFileName | default "environment.json" }}: |-
+    {{- $filename := print .Values.configMap.path .Values.configMap.fileName }}
+    {{- .Files.Get $filename | nindent 4 }}
+{{- end }}
+
+#values.yaml
+configMap:
+  create: true
+  path: environments/appointment-ui/
+  name: appointment-ui
+
+volumeMounts:
+  - name: config-volume
+    mountPath: /app/assets/environments
+
+volumes:
+  - name: config-volume
+    configMap:
+      name: appointment-ui
+
+# values-{env}.yaml
+configMap:
+  fileName: environment-dev.json
+```
 - Config
 ```json
 {
-  "production": false,
+  "production": false, // This must be true in prod
   "authServer": {
+    //Auth Server endpoints
     "issuer": "http://auth-server:9000",
+    //Client ID registered on Auth Server
     "clientId": "{oidc client}",
-    "redirectUri": "http://ui:4200/callback",
+    // Redirect Url after successfull signin
+    "redirectUri": "http://ui:4200/callback", 
+    // Url to redirect to after sign out
     "postLogoutRedirectUri": "http://ui:4200/account/sign-out",
     "scope": "openid profile email",
     "strictDiscoveryDocumentValidation": false,
@@ -31,7 +68,7 @@
   }
 }
 ```
-- Build docker file
+- Build docker file(if not using existing public image provided on the above steps)
   - On the project directory(``../appointment_system-ui``)
     - Run command ``ng build``
     - Using Docker
