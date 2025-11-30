@@ -2,7 +2,7 @@
 
 ## Building Docker Image
  - There is an already existing public image you can use without building the new one if you not making code changes:
-   - [Docker Image](docker.io/menelismthembu12/appointment-ui)
+   - Image - ```docker.io/menelismthembu12/appointment-ui```
    - Tag - ``1.0.8``
  - The configuration can be mounted into the pod to be externalized.
    - It must be on the file path ``/assets/environments/environment.json``
