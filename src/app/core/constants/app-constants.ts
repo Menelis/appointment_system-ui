@@ -16,7 +16,8 @@ export const RoleConstants  = {
 
 export const AppConstants  = {
   PAGE_NO: 'pageNo',
-  PAGE_SIZE: 'pageSize'
+  PAGE_SIZE: 'pageSize',
+  SEARCH_TERM: 'searchTerm'
 }
 
 export const AppointmentStatus = {

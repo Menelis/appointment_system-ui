@@ -4,9 +4,19 @@
         <div class="card-title fw-bold text-center">Branches</div>
       </div>
       <div class="card-body">
-        <div class="text-end">
-          <a class="btn btn-primary rounded-pill" routerLink="/branch/create"><i class="bi bi-plus-square-fill"></i> New</a>
-        </div>
+        <form [formGroup]="searchForm" novalidate autocomplete="off" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-6">
+              <input type="text" class="form-control" placeholder="Search by Name, Street No" formControlName="searchTerm">
+            </div>
+            <div class="col-2">
+              <button class="btn btn-primary rounded-pill" type="submit"><i class="bi bi-search"></i> Search</button>
+            </div>
+            <div class="col-4 text-end">
+              <a class="btn btn-primary rounded-pill" routerLink="/branch/create"><i class="bi bi-plus-square-fill"></i> New</a>
+            </div>
+          </div>
+        </form>
         <br/>
         <table class="table table-bordered">
           <thead>
@@ -34,7 +44,7 @@
           <tr>
             <td colspan="6">
               <ngb-pagination
-                              [page]="pagedBranchResult.data.page.number + 1"
+                              [page]="currentPage"
                               [collectionSize]="pagedBranchResult.data.page.totalElements"
                               [pageSize]="pagedBranchResult.data.page.size"
                               [boundaryLinks]="true"

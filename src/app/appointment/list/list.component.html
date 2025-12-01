@@ -4,9 +4,19 @@
       <div class="card-title fw-bold text-center">Appointments</div>
     </div>
     <div class="card-body">
-      <div class="text-end">
-        <a class="btn btn-primary rounded-pill" routerLink="/appointment/create">New Appointment</a>
-      </div>
+      <form [formGroup]="searchForm" novalidate autocomplete="off" (ngSubmit)="onSearchFormSubmit()">
+        <div class="row">
+          <div class="col-6">
+            <input type="text" class="form-control" formControlName="searchTerm" placeholder="Search by reference No">
+          </div>
+          <div class="col-2">
+            <button class="btn btn-primary rounded-pill"><i class="bi bi-search"></i> Search</button>
+          </div>
+          <div class="col-4 text-end">
+            <a class="btn btn-primary rounded-pill" routerLink="/appointment/create">New Appointment</a>
+          </div>
+        </div>
+      </form>
       <br/>
       <table class="table table-bordered">
         <thead>

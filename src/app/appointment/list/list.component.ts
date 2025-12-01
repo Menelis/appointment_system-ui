@@ -9,6 +9,7 @@ import { SweetAlertService } from '../../core/services/sweet-alert.service';
 import {AuthService} from '../../core/services/auth/auth.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {DetailsComponent} from '../details/details.component';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-list',
@@ -21,6 +22,8 @@ export class ListComponent implements OnInit {
   currentPage = 1;
   pagedAppointmentResult!: PagedResult<AppointmentDto[]>;
   canConfirmBooking!: boolean;
+  searchForm!: FormGroup;
+
   constructor(private _appointmentService: AppointmentService,
               @Inject(APP_CONFIG_TOKEN) appConfig: AppConfig,
               private _sweetAlertService: SweetAlertService,
@@ -30,11 +33,19 @@ export class ListComponent implements OnInit {
     this.canConfirmBooking = this._authService.isUser || this._authService.isAdmin;
   }
   ngOnInit(): void {
+    this.searchForm = new FormGroup({
+      searchTerm: new FormControl()
+    });
     this.loadAppointments(this.currentPage, this.pageSize);
   }
-
-  loadAppointments = (pageNo: number, pageSize: number) => {
-    this._appointmentService.getPaginatedAppointments(pageNo, pageSize).subscribe({
+  onSearchFormSubmit = () => {
+    let searchTerm = this.searchForm.value.searchTerm;
+    if(searchTerm) {
+      this.loadAppointments(this.currentPage, this.pageSize, searchTerm);
+    }
+  }
+  loadAppointments = (pageNo: number, pageSize: number, searchTerm?: string) => {
+    this._appointmentService.getPaginatedAppointments(pageNo, pageSize, searchTerm).subscribe({
       next: (response) => {
         this.pagedAppointmentResult = response;
       },
@@ -89,7 +100,6 @@ export class ListComponent implements OnInit {
     return "";
   }
   openDetailsModal = (appointment: AppointmentDto) => {
-    console.log(appointment);
     const modalRef = this._modalService.open(
       DetailsComponent,
       {

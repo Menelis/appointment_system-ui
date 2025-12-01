@@ -5,6 +5,8 @@ import {BranchDto} from '../models/dto/branch-dto';
 import {ApiResponse} from '../models/api-response';
 import {PagedResult} from '../models/paged-result';
 import { getPaginationHttpParams } from '../util/object-util';
+import {HttpParams} from '@angular/common/http';
+import {AppConstants} from '../constants/app-constants';
 
 
 @Injectable({
@@ -21,9 +23,10 @@ export class BranchService {
   getAllBranches = () => {
     return this._repository.getData<ApiResponse<BranchDto[]>>('branch');
   }
-  getPaginatedBranches = (pageNo: number, pageSize: number) : Observable<PagedResult<BranchDto[]>> => {
-
-    return this._repository.getData<PagedResult<BranchDto[]>>('branch/get-paginated-branches', getPaginationHttpParams(pageNo, pageSize));
+  getPaginatedBranches = (pageNo: number, pageSize: number, searchTerm?: string) : Observable<PagedResult<BranchDto[]>> => {
+    let httpParams: HttpParams = getPaginationHttpParams(pageNo, pageSize)
+      .set(AppConstants.SEARCH_TERM, searchTerm || '')
+    return this._repository.getData<PagedResult<BranchDto[]>>('branch/get-paginated-branches', httpParams);
   }
   getBranchById = (id: number): Observable<ApiResponse<BranchDto>> => {
     return this._repository.getData<ApiResponse<BranchDto>>(`branch/${id}`);

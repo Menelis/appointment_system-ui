@@ -5,6 +5,8 @@ import {PagedResult} from '../models/paged-result';
 import {AppointmentDto} from '../models/dto/appointment-dto';
 import {AuthService} from './auth/auth.service';
 import { getPaginationHttpParams } from '../util/object-util';
+import {HttpParams} from '@angular/common/http';
+import {AppConstants} from '../constants/app-constants';
 
 
 @Injectable({
@@ -26,8 +28,10 @@ export class AppointmentService {
     return this._repository.create<ApiResponse<any>>('appointment/update-status', updateStatus);
   }
 
-  public getPaginatedAppointments= (pageNo: number, pageSize: number) => {
+  public getPaginatedAppointments= (pageNo: number, pageSize: number, searchTerm?: string) => {
     let apiEndPoint = this._authService.isAdmin ? 'appointment/admin/get-all-appointments' : 'appointment/customer/get-all-appointments';
-    return this._repository.getData<PagedResult<AppointmentDto[]>>(apiEndPoint, getPaginationHttpParams(pageNo, pageSize));
+    let httpParams: HttpParams = getPaginationHttpParams(pageNo, pageSize)
+      .set(AppConstants.SEARCH_TERM, searchTerm || '');
+    return this._repository.getData<PagedResult<AppointmentDto[]>>(apiEndPoint, httpParams);
   }
 }

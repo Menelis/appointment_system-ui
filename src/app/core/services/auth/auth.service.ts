@@ -20,8 +20,11 @@ export class AuthService {
   constructor(@Inject(APP_CONFIG_TOKEN) appConfig: AppConfig,
               private _oauthService: OAuthService,
               private _http: HttpClient) {
+    console.log(window.location.search);
     this._oauthService.configure(appConfig.authServer);
-    this._oauthService.loadDiscoveryDocumentAndTryLogin();
+    this._oauthService.loadDiscoveryDocumentAndTryLogin({
+      customHashFragment: window.location.search
+    });
     this.authUrl = `${appConfig.authServer.issuer}/api/v1/auth`;
   }
 
