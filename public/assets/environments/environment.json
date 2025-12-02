@@ -10,7 +10,7 @@
     "responseType": "code",
     "requireHttps": false,
     "disableAtHashCheck": false,
-    "useSilentRefresh": false,
+    "useSilentRefresh": true,
     "disablePKCE": false
   },
   "resourceServer": {

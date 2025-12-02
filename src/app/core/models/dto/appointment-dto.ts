@@ -8,4 +8,5 @@ export interface AppointmentDto {
   slot?: SlotDto,
   referenceNo: string;
   status: string
+  description: string;
 }
