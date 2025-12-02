@@ -8,6 +8,7 @@ import { RoleConstants } from '../../constants/app-constants';
 import {PasswordReset} from '../../models/request/password-reset';
 import {ApiResponse} from '../../models/api-response';
 import {getHttpHeadersDisableCache} from '../../util/object-util';
+import {Router} from '@angular/router';
 
 
 
@@ -20,7 +21,6 @@ export class AuthService {
   constructor(@Inject(APP_CONFIG_TOKEN) appConfig: AppConfig,
               private _oauthService: OAuthService,
               private _http: HttpClient) {
-    console.log(window.location.search);
     this._oauthService.configure(appConfig.authServer);
     this._oauthService.loadDiscoveryDocumentAndTryLogin({
       customHashFragment: window.location.search
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   signIn = () => {
-    this._oauthService.initCodeFlow();
+     this._oauthService.initCodeFlow();
   }
   signUp = (signUpRequest: SignUpDto) => {
     return this._http.post(`${this.authUrl}/sign-up`, signUpRequest);

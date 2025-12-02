@@ -10,7 +10,5 @@ import {Router} from '@angular/router';
 export class SignOutComponent implements OnInit {
   constructor(private _router: Router) {
   }
-  ngOnInit(): void {
-    //this._router.navigate(['/']);
-  }
+  ngOnInit(): void {}
 }

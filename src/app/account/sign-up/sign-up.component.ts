@@ -43,7 +43,8 @@ export class SignUpComponent implements OnInit {
         contactNo: signUpForm.contactNo,
         password: signUpForm.password
       };
-      this._authService.signUp(signUpDto).pipe(finalize(() => {}))
+      this._authService.signUp(signUpDto).pipe(finalize(() => {
+      }))
         .subscribe({
           next: (response) => {
             let apiResponse: ApiResponse<any> = (response as ApiResponse<any>);

@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {NgbDatepickerModule, NgbPaginationModule, NgbProgressbarModule} from '@ng-bootstrap/ng-bootstrap';
 import { ResponseMessageComponent } from './response-message/response-message.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 
 
 @NgModule({
   declarations: [
-    ResponseMessageComponent
+    ResponseMessageComponent,
+    ProgressBarComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { ResponseMessageComponent } from './response-message/response-message.co
     NgbDatepickerModule,
     NgbPaginationModule,
     ResponseMessageComponent,
-    NgbProgressbarModule
+    NgbProgressbarModule,
+    ProgressBarComponent
   ]
 })
 export class SharedModule { }
