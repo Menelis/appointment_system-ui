@@ -3,7 +3,7 @@
 ## Existing public Docker Image
  - There is an already existing public image you can use without building the new one if you not making code changes:
    - Image - ```docker.io/menelismthembu12/appointment-ui```
-   - Tag - ``1.0.8``
+   - Tag - ``1.1.2``
  - The configuration can be mounted into the pod to be externalized.
    - It must be on the file path ``/assets/environments/environment.json``
  - Snippet of ConfigMap for external config
@@ -75,6 +75,15 @@ configMap:
     - ``docker build -t appointment_system-ui:{tag version} .``
   - Using Containerd
     - ``nerdctl build -t appointment_system-ui:{tag version} .``
+## 🐛 Known Issues
+  * **Issue: HashLocationStrategy redirect uri**
+    *   **Description** There is an issue with successful authentication from auth server because [Spring Authorization Server](https://spring.io/projects/spring-authorization-server) does not support # fragment on url.
+    *   **Workaround:**
+          * The app does redirect but redirect to ```#/home``` instead of ```#/callback``` which is the correct redirect uri.
+  * **Issue: Page Refresh After successful login**
+    *   **Description** The app require a page refresh after successful sign in.
+    *   **Workaround**
+          * After successful sign in you have to refresh the page
 
 ## Technology Stack
 - [Angular](https://v19.angular.dev/overview) 19.2.0
