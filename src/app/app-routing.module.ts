@@ -5,7 +5,6 @@ import { authGuard } from './core/guard/auth.guard';
 import { adminGuard } from './core/guard/admin.guard';
 import {CallbackComponent} from './callback/callback.component';
 import {ForbiddenComponent} from './forbidden/forbidden.component';
-import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 const routes: Routes = [
   {
@@ -42,7 +41,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true, initialNavigation: "enabledBlocking" })],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
