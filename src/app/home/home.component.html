@@ -2,24 +2,38 @@
   <div class="card">
     <div class="card-body">
       <p class="text-center" *ngIf="!isAuthenticated">
-        Welcome to Appointment System.
-        To make a branch appointment please <a routerLink="/account/sign-up" class="btn btn-primary rounded-pill">
-        <i class="bi bi-box-arrow-up"></i>
-        Sign Up</a> if you have not registered
-        or <a routerLink="/account/sign-in" class="btn btn-primary rounded-pill">
-        <i class="bi bi-box-arrow-right"></i> Sign In
-      </a> to make an appointment. If you are an existing user and you have forgotten your password click <a routerLink="/account/forgot-password" class="btn btn-primary  rounded-pill"><i class="bi bi-eye-slash"></i> here</a> for password reset.
+        Welcome to Appointment System. To make a branch appointment please
+        <a routerLink="/account/sign-up" class="btn btn-primary rounded-pill">
+          <i class="bi bi-box-arrow-up"></i>
+          Sign Up</a
+        >
+        if you have not registered or
+        <a routerLink="/account/sign-in" class="btn btn-primary rounded-pill">
+          <i class="bi bi-box-arrow-right"></i> Sign In
+        </a>
+        to make an appointment. If you are an existing user and you have
+        forgotten your password click
+        <a
+          routerLink="/account/forgot-password"
+          class="btn btn-primary rounded-pill"
+          ><i class="bi bi-eye-slash"></i> here</a
+        >
+        for password reset.
       </p>
       <div class="row" *ngIf="isAuthenticated">
         <div class="col-12">
           <p class="h5 text-center">Welcome to Branch Appointment System</p>
           <p>Here are the operating hours for branches:</p>
           <ul>
-            <li>Monday - Friday - 08:00 - 17:00 </li>
+            <li>Monday - Friday - 08:00 - 17:00</li>
             <li>Saturdays - 09:00 - 13:00</li>
           </ul>
           <p>These times varies between different branches.<b></b></p>
-          <p><b>Note</b>: If you appointment belongs to the slot where the branch is closed you might get a notification via email about cancellation of your appointment with a reason.</p>
+          <p>
+            <b>Note</b>: If you appointment belongs to the slot where the branch
+            is closed you might get a notification via email about cancellation
+            of your appointment with a reason.
+          </p>
         </div>
       </div>
     </div>

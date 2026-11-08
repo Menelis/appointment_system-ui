@@ -1,12 +1,14 @@
 # Appointment System UI
 
 ## Existing public Docker Image
- - There is an already existing public image you can use without building the new one if you not making code changes:
-   - Image - ```docker.io/menelismthembu12/appointment-ui```
-   - Tag - ``1.1.2``
- - The configuration can be mounted into the pod to be externalized.
-   - It must be on the file path ``/assets/environments/environment.json``
- - Snippet of ConfigMap for external config
+
+- There is an already existing public image you can use without building the new one if you not making code changes:
+  - Image - `docker.io/menelismthembu12/appointment-ui`
+  - Tag - `1.1.2`
+- The configuration can be mounted into the pod to be externalized.
+  - It must be on the file path `/assets/environments/environment.json`
+- Snippet of ConfigMap for external config
+
 ```yaml
 # ConfigMap template
 {{- if and .Values.configMap .Values.configMap.create -}}
@@ -39,7 +41,9 @@ volumes:
 configMap:
   fileName: environment-dev.json
 ```
+
 - Config
+
 ```json
 {
   "production": false, // This must be true in prod
@@ -49,7 +53,7 @@ configMap:
     //Client ID registered on Auth Server
     "clientId": "{oidc client}",
     // Redirect Url after successfull signin
-    "redirectUri": "http://ui:4200/callback", 
+    "redirectUri": "http://ui:4200/callback",
     // Url to redirect to after sign out
     "postLogoutRedirectUri": "http://ui:4200/account/sign-out",
     "scope": "openid profile email",
@@ -68,24 +72,29 @@ configMap:
   }
 }
 ```
+
 ## Build Docker File(if not using existing public image provided on the above steps)
-- On the project directory(``../appointment_system-ui``)
-  - Run command ``ng build``
+
+- On the project directory(`../appointment_system-ui`)
+  - Run command `ng build`
   - Using Docker
-    - ``docker build -t appointment_system-ui:{tag version} .``
+    - `docker build -t appointment_system-ui:{tag version} .`
   - Using Containerd
-    - ``nerdctl build -t appointment_system-ui:{tag version} .``
+    - `nerdctl build -t appointment_system-ui:{tag version} .`
+
 ## 🐛 Known Issues
-  * **Issue: HashLocationStrategy redirect uri**
-    *   **Description** There is an issue with successful authentication from auth server because [Spring Authorization Server](https://spring.io/projects/spring-authorization-server) does not support # fragment on url.
-    *   **Workaround:**
-          * The app does redirect but redirect to ```#/home``` instead of ```#/callback``` which is the correct redirect uri.
-  * **Issue: Page Refresh After successful login**
-    *   **Description** The app require a page refresh after successful sign in.
-    *   **Workaround**
-          * After successful sign in you have to refresh the page
+
+- **Issue: HashLocationStrategy redirect uri**
+  - **Description** There is an issue with successful authentication from auth server because [Spring Authorization Server](https://spring.io/projects/spring-authorization-server) does not support # fragment on url.
+  - **Workaround:**
+    - The app does redirect but redirect to `#/home` instead of `#/callback` which is the correct redirect uri.
+- **Issue: Page Refresh After successful login**
+  - **Description** The app require a page refresh after successful sign in.
+  - **Workaround**
+    - After successful sign in you have to refresh the page
 
 ## Technology Stack
+
 - [Angular](https://v19.angular.dev/overview) 19.2.0
   - Packages
     - [Boostrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/) 5.3.8
@@ -105,4 +114,5 @@ configMap:
         - [More](https://ng-bootstrap.github.io/#/components/accordion/overview)
 
 ## Home Page Preview
+
 ![Home Page](https://github.com/Menelis/appointment_system-ui/blob/main/Appointment%20-%20UI%20-%20v2.gif)

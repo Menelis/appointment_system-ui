@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SweetAlertService {
-
-  constructor() { }
+  constructor() {}
 
   /**
    * Show confirmation dialog before actioning the item.
@@ -15,36 +14,41 @@ export class SweetAlertService {
    * @param confirmButtonText confirmation button text
    */
   confirmationDialog = (
-                        title: string,
-                        text: string,
-                        cancelButtonText?: string,
-                        confirmButtonText?:string) => {
+    title: string,
+    text: string,
+    cancelButtonText?: string,
+    confirmButtonText?: string,
+  ) => {
     return Swal.fire({
       title: title,
       text: text,
-      icon: "question",
-      showCancelButton: true,
-      cancelButtonText: cancelButtonText || 'No',
-      confirmButtonText: confirmButtonText || 'Yes'
-    });
-  }
-  confirmationDialogWithMessage = (title: string, cancelButtonText?: string, confirmButtonText?: string) => {
-    return Swal.fire({
-      title: title,
-      input: "textarea",
-      inputPlaceholder: 'Enter a reason here',
-      icon: "warning",
+      icon: 'question',
       showCancelButton: true,
       cancelButtonText: cancelButtonText || 'No',
       confirmButtonText: confirmButtonText || 'Yes',
-      inputValidator: ((value) => {
-        if(!value) {
-          return 'Reason is required'
+    });
+  };
+  confirmationDialogWithMessage = (
+    title: string,
+    cancelButtonText?: string,
+    confirmButtonText?: string,
+  ) => {
+    return Swal.fire({
+      title: title,
+      input: 'textarea',
+      inputPlaceholder: 'Enter a reason here',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: cancelButtonText || 'No',
+      confirmButtonText: confirmButtonText || 'Yes',
+      inputValidator: (value) => {
+        if (!value) {
+          return 'Reason is required';
         }
         return null;
-      })
+      },
     });
-  }
+  };
   /**
    * Dialog for successful action.
    * @param title Dialog title
@@ -54,9 +58,9 @@ export class SweetAlertService {
     Swal.fire({
       title: title,
       text: text,
-      icon: "success"
+      icon: 'success',
     });
-  }
+  };
   /**
    * Dialog for failure action.
    * @param title Dialog title
@@ -66,9 +70,7 @@ export class SweetAlertService {
     Swal.fire({
       title: title,
       text: text,
-      icon: "error"
+      icon: 'error',
     });
-  }
-
-
+  };
 }

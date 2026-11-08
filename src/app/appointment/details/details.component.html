@@ -1,6 +1,11 @@
 <div class="modal-header">
   <h4 class="modal-title">Appointment Details</h4>
-  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss()"
+  ></button>
 </div>
 <div class="modal-body">
   <div class="row">
@@ -33,7 +38,10 @@
       <label class="fw-bold">Slot:</label>
     </div>
     <div class="col-9" *ngIf="appointmentDetails.slot">
-      <label> {{ appointmentDetails.slot.slotStart }} - {{ appointmentDetails.slot.slotEnd }}</label>
+      <label>
+        {{ appointmentDetails.slot.slotStart }} -
+        {{ appointmentDetails.slot.slotEnd }}</label
+      >
     </div>
     <div class="col-9" *ngIf="!appointmentDetails.slot">
       <label>Any Time</label>
@@ -55,7 +63,7 @@
       <label> {{ appointmentDetails.description }}</label>
     </div>
   </div>
-  <hr/>
+  <hr />
   <h4 class="modal-title">Branch Details:</h4>
   <div class="row">
     <div class="col-3">
@@ -70,7 +78,10 @@
       <label class="fw-bold">Address:</label>
     </div>
     <div class="col-9">
-      <label> {{ appointmentDetails.branch?.streetNo }}, {{ appointmentDetails.branch?.addressLine1 }}</label>
+      <label>
+        {{ appointmentDetails.branch?.streetNo }},
+        {{ appointmentDetails.branch?.addressLine1 }}</label
+      >
     </div>
   </div>
   <div class="row">
@@ -91,5 +102,11 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary rounded-pill" (click)="activeModal.close()">Close</button>
+  <button
+    type="button"
+    class="btn btn-secondary rounded-pill"
+    (click)="activeModal.close()"
+  >
+    Close
+  </button>
 </div>

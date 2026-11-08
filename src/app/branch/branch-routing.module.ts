@@ -1,31 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ListComponent} from './list/list.component';
-import {CreateComponent} from './create/create.component';
-import {EditComponent} from './edit/edit.component';
+import { ListComponent } from './list/list.component';
+import { CreateComponent } from './create/create.component';
+import { EditComponent } from './edit/edit.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'list',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'list',
-    component: ListComponent
+    component: ListComponent,
   },
   {
     path: 'create',
-    component: CreateComponent
+    component: CreateComponent,
   },
   {
     path: 'edit/:id',
-    component: EditComponent
-  }
+    component: EditComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class BranchRoutingModule { }
+export class BranchRoutingModule {}

@@ -1,21 +1,21 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {AppointmentService} from '../../core/services/appointment.service';
-import {APP_CONFIG_TOKEN, AppConfig} from '../../core/models/app-config';
-import {AppointmentDto} from '../../core/models/dto/appointment-dto';
-import {PagedResult} from '../../core/models/paged-result';
-import {SlotDto} from '../../core/models/dto/slot-dto';
-import {AppointmentStatus} from '../../core/constants/app-constants';
+import { Component, Inject, OnInit } from '@angular/core';
+import { AppointmentService } from '../../core/services/appointment.service';
+import { APP_CONFIG_TOKEN, AppConfig } from '../../core/models/app-config';
+import { AppointmentDto } from '../../core/models/dto/appointment-dto';
+import { PagedResult } from '../../core/models/paged-result';
+import { SlotDto } from '../../core/models/dto/slot-dto';
+import { AppointmentStatus } from '../../core/constants/app-constants';
 import { SweetAlertService } from '../../core/services/sweet-alert.service';
-import {AuthService} from '../../core/services/auth/auth.service';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {DetailsComponent} from '../details/details.component';
-import {FormControl, FormGroup} from '@angular/forms';
+import { AuthService } from '../../core/services/auth/auth.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DetailsComponent } from '../details/details.component';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-list',
   standalone: false,
   templateUrl: './list.component.html',
-  styleUrl: './list.component.scss'
+  styleUrl: './list.component.scss',
 })
 export class ListComponent implements OnInit {
   pageSize!: number;
@@ -24,89 +24,118 @@ export class ListComponent implements OnInit {
   canConfirmBooking!: boolean;
   searchForm!: FormGroup;
 
-  constructor(private _appointmentService: AppointmentService,
-              @Inject(APP_CONFIG_TOKEN) appConfig: AppConfig,
-              private _sweetAlertService: SweetAlertService,
-              private _authService: AuthService,
-              private _modalService: NgbModal) {
+  constructor(
+    private _appointmentService: AppointmentService,
+    @Inject(APP_CONFIG_TOKEN) appConfig: AppConfig,
+    private _sweetAlertService: SweetAlertService,
+    private _authService: AuthService,
+    private _modalService: NgbModal,
+  ) {
     this.pageSize = appConfig.defaultUiSettings.pageSize;
-    this.canConfirmBooking = this._authService.isUser || this._authService.isAdmin;
+    this.canConfirmBooking =
+      this._authService.isUser || this._authService.isAdmin;
   }
   ngOnInit(): void {
     this.searchForm = new FormGroup({
-      searchTerm: new FormControl()
+      searchTerm: new FormControl(),
     });
     this.loadAppointments(this.currentPage, this.pageSize);
   }
   onSearchFormSubmit = () => {
     let searchTerm = this.searchForm.value.searchTerm;
-    if(searchTerm) {
+    if (searchTerm) {
       this.loadAppointments(this.currentPage, this.pageSize, searchTerm);
     }
-  }
-  loadAppointments = (pageNo: number, pageSize: number, searchTerm?: string) => {
-    this._appointmentService.getPaginatedAppointments(pageNo, pageSize, searchTerm).subscribe({
-      next: (response) => {
-        this.pagedAppointmentResult = response;
-      },
-      error: (error) => {}
-    });
-  }
+  };
+  loadAppointments = (
+    pageNo: number,
+    pageSize: number,
+    searchTerm?: string,
+  ) => {
+    this._appointmentService
+      .getPaginatedAppointments(pageNo, pageSize, searchTerm)
+      .subscribe({
+        next: (response) => {
+          this.pagedAppointmentResult = response;
+        },
+        error: (error) => {},
+      });
+  };
 
   onPageSelectChange = (pageNumber: number) => {
-    this.loadAppointments(pageNumber, this.pageSize)
-  }
+    this.loadAppointments(pageNumber, this.pageSize);
+  };
 
-  updateStatusModal = (appointment:AppointmentDto, status: string)=> {
-    this._sweetAlertService.confirmationDialog('Booking Confirmation',`Are you sure you want to confirm the booking with reference no: ${appointment.referenceNo} ?`)
+  updateStatusModal = (appointment: AppointmentDto, status: string) => {
+    this._sweetAlertService
+      .confirmationDialog(
+        'Booking Confirmation',
+        `Are you sure you want to confirm the booking with reference no: ${appointment.referenceNo} ?`,
+      )
       .then((result) => {
-        if(result.isConfirmed) {
+        if (result.isConfirmed) {
           this.updateStatus(appointment, status);
         }
       });
-  }
+  };
   cancelStatusModal = (appointment: AppointmentDto) => {
-    this._sweetAlertService.confirmationDialogWithMessage(`Please provide a reason for booking cancellation with reference no: ${appointment.referenceNo}`, 'Cancel', 'Confirm')
+    this._sweetAlertService
+      .confirmationDialogWithMessage(
+        `Please provide a reason for booking cancellation with reference no: ${appointment.referenceNo}`,
+        'Cancel',
+        'Confirm',
+      )
       .then((result) => {
-        if(result.isConfirmed) {
-         this.updateStatus(appointment, AppointmentStatus.BOOKING_CANCELLED, result.value);
+        if (result.isConfirmed) {
+          this.updateStatus(
+            appointment,
+            AppointmentStatus.BOOKING_CANCELLED,
+            result.value,
+          );
         }
       });
-  }
-  updateStatus = (appointment:AppointmentDto, status: string, reason?: string) => {
+  };
+  updateStatus = (
+    appointment: AppointmentDto,
+    status: string,
+    reason?: string,
+  ) => {
     const updateStatus = {
       id: appointment.id,
       status: status,
-      reason: reason
+      reason: reason,
     };
     this._appointmentService.updateAppointmentStatus(updateStatus).subscribe({
       next: (response) => {
-        if(response.success) {
-          this._sweetAlertService.showSuccessMessage('Booking Confirmation', response.message);
+        if (response.success) {
+          this._sweetAlertService.showSuccessMessage(
+            'Booking Confirmation',
+            response.message,
+          );
           return;
         }
-        this._sweetAlertService.showFailureMessage('Booking Confirmation', response.message);
+        this._sweetAlertService.showFailureMessage(
+          'Booking Confirmation',
+          response.message,
+        );
       },
-      error: (error) => {}
+      error: (error) => {},
     });
-  }
+  };
   getSlotFormatedString = (slot?: SlotDto) => {
     return slot == null ? 'Any time' : `${slot.slotStart} - ${slot.slotEnd}`;
-  }
+  };
   hideButton = (appointment: AppointmentDto, statuses: string[]) => {
-    if(statuses.includes(appointment.status)) {
-      return "d-none";
+    if (statuses.includes(appointment.status)) {
+      return 'd-none';
     }
-    return "";
-  }
+    return '';
+  };
   openDetailsModal = (appointment: AppointmentDto) => {
-    const modalRef = this._modalService.open(
-      DetailsComponent,
-      {
-        size: "lg"
-      }
-    );
+    const modalRef = this._modalService.open(DetailsComponent, {
+      size: 'lg',
+    });
     modalRef.componentInstance.appointmentDetails = appointment;
-  }
+  };
   protected readonly AppointmentStatus = AppointmentStatus;
 }

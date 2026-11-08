@@ -1,58 +1,79 @@
 <div class="col-md-12">
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title fw-bold text-center">Branches</div>
-      </div>
-      <div class="card-body">
-        <form [formGroup]="searchForm" novalidate autocomplete="off" (ngSubmit)="onSubmit()">
-          <div class="row">
-            <div class="col-6">
-              <input type="text" class="form-control" placeholder="Search by Name, Street No" formControlName="searchTerm">
-            </div>
-            <div class="col-2">
-              <button class="btn btn-primary rounded-pill" type="submit"><i class="bi bi-search"></i> Search</button>
-            </div>
-            <div class="col-4 text-end">
-              <a class="btn btn-primary rounded-pill" routerLink="/branch/create"><i class="bi bi-plus-square-fill"></i> New</a>
-            </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title fw-bold text-center">Branches</div>
+    </div>
+    <div class="card-body">
+      <form
+        [formGroup]="searchForm"
+        novalidate
+        autocomplete="off"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="row">
+          <div class="col-6">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search by Name, Street No"
+              formControlName="searchTerm"
+            />
           </div>
-        </form>
-        <br/>
-        <table class="table table-bordered">
-          <thead>
-           <tr>
-             <th>Name</th>
-             <th>Street No</th>
-             <th>Province</th>
-             <th>City</th>
-             <th colspan="2">Action</th>
-           </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let branch of pagedBranchResult?.data?.content">
-              <td>{{ branch.name }}</td>
-              <td>{{ branch.streetNo }}</td>
-              <td>{{ branch?.province?.name }}</td>
-              <td>{{ branch?.city?.name }}</td>
-              <td colspan="2">
-                <button class="btn btn-primary rounded-pill" type="button" (click)="routeToEdit(branch.id)"><i class="bi bi-pencil-square fs-5"></i></button>
-<!--                <button class="btn btn-danger rounded-pill"><i class="bi bi-recycle fs-5"></i></button>-->
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
+          <div class="col-2">
+            <button class="btn btn-primary rounded-pill" type="submit">
+              <i class="bi bi-search"></i> Search
+            </button>
+          </div>
+          <div class="col-4 text-end">
+            <a class="btn btn-primary rounded-pill" routerLink="/branch/create"
+              ><i class="bi bi-plus-square-fill"></i> New</a
+            >
+          </div>
+        </div>
+      </form>
+      <br />
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Street No</th>
+            <th>Province</th>
+            <th>City</th>
+            <th colspan="2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let branch of pagedBranchResult?.data?.content">
+            <td>{{ branch.name }}</td>
+            <td>{{ branch.streetNo }}</td>
+            <td>{{ branch?.province?.name }}</td>
+            <td>{{ branch?.city?.name }}</td>
+            <td colspan="2">
+              <button
+                class="btn btn-primary rounded-pill"
+                type="button"
+                (click)="routeToEdit(branch.id)"
+              >
+                <i class="bi bi-pencil-square fs-5"></i>
+              </button>
+              <!--                <button class="btn btn-danger rounded-pill"><i class="bi bi-recycle fs-5"></i></button>-->
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
           <tr>
             <td colspan="6">
               <ngb-pagination
-                              [page]="currentPage"
-                              [collectionSize]="pagedBranchResult.data.page.totalElements"
-                              [pageSize]="pagedBranchResult.data.page.size"
-                              [boundaryLinks]="true"
-                              (pageChange)="onSelectedPageChange($event)"></ngb-pagination>
+                [page]="currentPage"
+                [collectionSize]="pagedBranchResult.data.page.totalElements"
+                [pageSize]="pagedBranchResult.data.page.size"
+                [boundaryLinks]="true"
+                (pageChange)="onSelectedPageChange($event)"
+              ></ngb-pagination>
             </td>
           </tr>
-          </tfoot>
-        </table>
-      </div>
+        </tfoot>
+      </table>
     </div>
   </div>
+</div>

@@ -1,4 +1,4 @@
-export const RoleConstants  = {
+export const RoleConstants = {
   /**
    * Role constant for customers.
    */
@@ -10,17 +10,17 @@ export const RoleConstants  = {
   /**
    * Role constant for users.
    */
-  USER_ROLE: 'USER'
+  USER_ROLE: 'USER',
+};
 
-}
-
-export const AppConstants  = {
+export const AppConstants = {
   PAGE_NO: 'pageNo',
   PAGE_SIZE: 'pageSize',
-  SEARCH_TERM: 'searchTerm'
-}
+  SEARCH_TERM: 'searchTerm',
+  X_CORRELATION_ID: 'X-Correlation-Id',
+};
 
 export const AppointmentStatus = {
   BOOKING_CONFIRMED: 'CONFIRMED',
-  BOOKING_CANCELLED: 'CANCELLED'
-}
+  BOOKING_CANCELLED: 'CANCELLED',
+};

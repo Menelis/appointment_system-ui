@@ -8,9 +8,8 @@ describe('CreateUpdateBranchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CreateUpdateBranchComponent]
-    })
-    .compileComponents();
+      declarations: [CreateUpdateBranchComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CreateUpdateBranchComponent);
     component = fixture.componentInstance;

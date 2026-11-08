@@ -4,62 +4,123 @@
       <div class="card-title fw-bold text-center">Appointments</div>
     </div>
     <div class="card-body">
-      <form [formGroup]="searchForm" novalidate autocomplete="off" (ngSubmit)="onSearchFormSubmit()">
+      <form
+        [formGroup]="searchForm"
+        novalidate
+        autocomplete="off"
+        (ngSubmit)="onSearchFormSubmit()"
+      >
         <div class="row">
           <div class="col-6">
-            <input type="text" class="form-control" formControlName="searchTerm" placeholder="Search by reference No">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="searchTerm"
+              placeholder="Search by reference No"
+            />
           </div>
           <div class="col-2">
-            <button class="btn btn-primary rounded-pill"><i class="bi bi-search"></i> Search</button>
+            <button class="btn btn-primary rounded-pill">
+              <i class="bi bi-search"></i> Search
+            </button>
           </div>
           <div class="col-4 text-end">
-            <a class="btn btn-primary rounded-pill" routerLink="/appointment/create">New Appointment</a>
+            <a
+              class="btn btn-primary rounded-pill"
+              routerLink="/appointment/create"
+              >New Appointment</a
+            >
           </div>
         </div>
       </form>
-      <br/>
+      <br />
       <table class="table table-bordered">
         <thead>
-        <tr>
-          <th>Reference No.</th>
-          <th>Customer Name</th>
-          <th>Appointment Date</th>
-          <th>Status</th>
-          <th>Branch</th>
-          <th colspan="4">Action</th>
-        </tr>
+          <tr>
+            <th>Reference No.</th>
+            <th>Customer Name</th>
+            <th>Appointment Date</th>
+            <th>Status</th>
+            <th>Branch</th>
+            <th colspan="4">Action</th>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let appointment of pagedAppointmentResult?.data?.content">
-          <td>{{ appointment.referenceNo }}</td>
-          <td>{{ appointment?.user?.fullName }}</td>
-          <td>{{ appointment.appointmentDate }} {{ getSlotFormatedString(appointment.slot) }}</td>
-          <td>{{ appointment.status }}</td>
-          <td>{{ appointment?.branch?.name }}</td>
-          <td colspan="4" *ngIf="canConfirmBooking">
-            <button class="btn btn-primary rounded-pill" (click)="openDetailsModal(appointment)"><i class="bi bi-eye-fill"></i></button>
-            <button class="btn btn-primary rounded-pill {{hideButton(appointment, [AppointmentStatus.BOOKING_CONFIRMED, AppointmentStatus.BOOKING_CANCELLED])}}" (click)="updateStatusModal(appointment, AppointmentStatus.BOOKING_CONFIRMED)"><i class="bi bi-check-circle-fill fs-6"></i> Confirm</button>
-            <button class="btn btn-danger rounded-pill {{hideButton(appointment, [AppointmentStatus.BOOKING_CANCELLED])}}" (click)="cancelStatusModal(appointment)"><i class="bi bi-x-circle fs-6"></i> Cancel</button>
-          </td>
-          <td colspan="4" *ngIf="!canConfirmBooking">
-            <button class="btn btn-primary rounded-pill" (click)="openDetailsModal(appointment)"><i class="bi bi-eye-fill"></i></button>
-            <button class="btn btn-danger rounded-pill" (click)="cancelStatusModal(appointment)"><i class="bi bi-x-circle fs-6"></i> Cancel</button>
-          </td>
-        </tr>
-        <tr *ngIf="pagedAppointmentResult?.data?.content?.length === 0">
-          <td colspan="8" class="text-center">No appointments created yet.</td>
-        </tr>
+          <tr *ngFor="let appointment of pagedAppointmentResult?.data?.content">
+            <td>{{ appointment.referenceNo }}</td>
+            <td>{{ appointment?.user?.fullName }}</td>
+            <td>
+              {{ appointment.appointmentDate }}
+              {{ getSlotFormatedString(appointment.slot) }}
+            </td>
+            <td>{{ appointment.status }}</td>
+            <td>{{ appointment?.branch?.name }}</td>
+            <td colspan="4" *ngIf="canConfirmBooking">
+              <button
+                class="btn btn-primary rounded-pill"
+                (click)="openDetailsModal(appointment)"
+              >
+                <i class="bi bi-eye-fill"></i>
+              </button>
+              <button
+                class="btn btn-primary rounded-pill {{
+                  hideButton(appointment, [
+                    AppointmentStatus.BOOKING_CONFIRMED,
+                    AppointmentStatus.BOOKING_CANCELLED,
+                  ])
+                }}"
+                (click)="
+                  updateStatusModal(
+                    appointment,
+                    AppointmentStatus.BOOKING_CONFIRMED
+                  )
+                "
+              >
+                <i class="bi bi-check-circle-fill fs-6"></i> Confirm
+              </button>
+              <button
+                class="btn btn-danger rounded-pill {{
+                  hideButton(appointment, [AppointmentStatus.BOOKING_CANCELLED])
+                }}"
+                (click)="cancelStatusModal(appointment)"
+              >
+                <i class="bi bi-x-circle fs-6"></i> Cancel
+              </button>
+            </td>
+            <td colspan="4" *ngIf="!canConfirmBooking">
+              <button
+                class="btn btn-primary rounded-pill"
+                (click)="openDetailsModal(appointment)"
+              >
+                <i class="bi bi-eye-fill"></i>
+              </button>
+              <button
+                class="btn btn-danger rounded-pill"
+                (click)="cancelStatusModal(appointment)"
+              >
+                <i class="bi bi-x-circle fs-6"></i> Cancel
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="pagedAppointmentResult?.data?.content?.length === 0">
+            <td colspan="8" class="text-center">
+              No appointments created yet.
+            </td>
+          </tr>
         </tbody>
         <tfoot>
-        <tr>
-          <td colspan="8">
-            <ngb-pagination
-              [collectionSize]="pagedAppointmentResult.data.page.totalElements"
-              [page]="pagedAppointmentResult.data.page.number + 1"
-              [pageSize]="pagedAppointmentResult.data.page.size"
-              (pageChange)="onPageSelectChange($event)"></ngb-pagination>
-          </td>
-        </tr>
+          <tr>
+            <td colspan="8">
+              <ngb-pagination
+                [collectionSize]="
+                  pagedAppointmentResult.data.page.totalElements
+                "
+                [page]="pagedAppointmentResult.data.page.number + 1"
+                [pageSize]="pagedAppointmentResult.data.page.size"
+                (pageChange)="onPageSelectChange($event)"
+              ></ngb-pagination>
+            </td>
+          </tr>
         </tfoot>
       </table>
     </div>

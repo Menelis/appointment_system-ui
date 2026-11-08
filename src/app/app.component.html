@@ -1,30 +1,52 @@
 <header class="py-3 mb-4 border-bottom shadow-lg">
   <div class="container-fluid align-items-center d-flex">
     <div class="flex-shrink-1">
-      <a routerLink="/" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none">
-        <img src="capitec-logo.svg"/>
+      <a
+        routerLink="/"
+        class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none"
+      >
+        <img src="capitec-logo.svg" />
       </a>
     </div>
     <div class="flex-grow-1 d-flex align-items-center">
       <div class="w-100 mb-3">
         <a class="navbar-brand text-black fw-bold" routerLink="/"></a>
       </div>
-      <div *ngIf="isAuthenticated" class="flex-shrink-0 dropdown ">
-        <a class="btn bg-white dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ fullName }}</a>
-        <ul class="dropdown-menu dropdown-menu-end shadow" aria-describedby="dropdownMenuLink">
+      <div *ngIf="isAuthenticated" class="flex-shrink-0 dropdown">
+        <a
+          class="btn bg-white dropdown-toggle fw-bold"
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          >{{ fullName }}</a
+        >
+        <ul
+          class="dropdown-menu dropdown-menu-end shadow"
+          aria-describedby="dropdownMenuLink"
+        >
           <li>
-            <button class="dropdown-item" (click)="signOut()" type="button">Sign Out</button>
+            <button class="dropdown-item" (click)="signOut()" type="button">
+              Sign Out
+            </button>
           </li>
         </ul>
       </div>
     </div>
   </div>
 </header>
-<div class="container-fluid pb-3 flex-grow-1 d-flex flex-column flex-sm-row overflow-auto">
+<div
+  class="container-fluid pb-3 flex-grow-1 d-flex flex-column flex-sm-row overflow-auto"
+>
   <div class="row flex-sm-grow-1 flex-grow-0">
-    <aside class="col-sm-3 flex-grow-sm-1 flex-shrink-1 flex-grow-0 sticky-top pb-sm-0 pb-3" *ngIf="isAuthenticated">
+    <aside
+      class="col-sm-3 flex-grow-sm-1 flex-shrink-1 flex-grow-0 sticky-top pb-sm-0 pb-3"
+      *ngIf="isAuthenticated"
+    >
       <div class="bg-light border rounded-3 p-1 h-100 sticky-top">
-        <ul class="nav nav-pills flex-sm-column flex-row mb-auto justify-content-between text-truncate">
+        <ul
+          class="nav nav-pills flex-sm-column flex-row mb-auto justify-content-between text-truncate"
+        >
           <li class="nav-item">
             <a class="nav-link px-2 text-truncate text-black" routerLink="/">
               <i class="bi bi-house fs-5"></i>
@@ -32,13 +54,19 @@
             </a>
           </li>
           <li class="nav-item" *ngIf="isAdmin">
-            <a class="nav-link px-2 text-truncate text-black" routerLink="/branch/list">
+            <a
+              class="nav-link px-2 text-truncate text-black"
+              routerLink="/branch/list"
+            >
               <i class="bi bi-bank fs-5"></i>
               Branch
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link px-2 text-truncate text-black" routerLink="/appointment/list">
+            <a
+              class="nav-link px-2 text-truncate text-black"
+              routerLink="/appointment/list"
+            >
               <i class="bi bi-calendar3 fs-5"></i>
               Appointment
             </a>
@@ -48,7 +76,7 @@
     </aside>
     <main class="col overflow-auto h-100">
       <div class="bg-light border rounded-3 p-3">
-        <router-outlet/>
+        <router-outlet />
       </div>
     </main>
   </div>
