@@ -1,17 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {BranchDto} from '../../core/models/dto/branch-dto';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {BranchService} from '../../core/services/branch.service';
-import {CityDto} from '../../core/models/dto/city-dto';
-import {CityService} from '../../core/services/city.service';
-import {finalize} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BranchDto } from '../../core/models/dto/branch-dto';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BranchService } from '../../core/services/branch.service';
+import { CityDto } from '../../core/models/dto/city-dto';
+import { CityService } from '../../core/services/city.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-edit',
   standalone: false,
   templateUrl: './edit.component.html',
-  styleUrl: './edit.component.scss'
+  styleUrl: './edit.component.scss',
 })
 export class EditComponent implements OnInit {
   branch!: BranchDto;
@@ -19,25 +19,43 @@ export class EditComponent implements OnInit {
   id!: number;
   cities!: CityDto[];
   busy = false;
-  constructor(private _route: ActivatedRoute,
-              private _branchService: BranchService,
-              private _cityService: CityService,
-              private _router: Router) {
+  constructor(
+    private _route: ActivatedRoute,
+    private _branchService: BranchService,
+    private _cityService: CityService,
+    private _router: Router,
+  ) {
     this.id = Number(this._route.snapshot.paramMap.get('id') || 0);
   }
   ngOnInit(): void {
     this.updateBranchForm = new FormGroup({
       id: new FormControl(''),
-      branchName: new FormControl('', [Validators.required, Validators.maxLength(100)]),
-      streetNo: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      branchName: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(100),
+      ]),
+      streetNo: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(50),
+      ]),
       addressLine1: new FormControl(null, [Validators.maxLength(255)]),
       addressLine2: new FormControl(null, [Validators.maxLength(255)]),
       cityId: new FormControl('', [Validators.required]),
       provinceId: new FormControl('', [Validators.required]),
-      postalCode: new FormControl('', [Validators.required, Validators.maxLength(10)]),
-      emailAddress: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.email]),
+      postalCode: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(10),
+      ]),
+      emailAddress: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(100),
+        Validators.email,
+      ]),
       faxNo: new FormControl(null, [Validators.maxLength(20)]),
-      landLine: new FormControl('', [Validators.required, Validators.maxLength(20)])
+      landLine: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(20),
+      ]),
     });
     this.getBranchById();
   }
@@ -52,25 +70,23 @@ export class EditComponent implements OnInit {
           emailAddress: this.branch.email,
           provinceId: this.branch?.province?.id,
           cityId: this.branch?.city?.id,
-          ...this.branch
+          ...this.branch,
         });
       },
-      error: (error) => {
-
-      }
+      error: (error) => {},
     });
-  }
+  };
   loadCities = (provinceId: number) => {
     this._cityService.getCitiesByProvinceId(provinceId).subscribe({
       next: (response) => {
         this.cities = response.data;
       },
-      error: (error) => {}
+      error: (error) => {},
     });
-  }
+  };
 
   onSubmit = () => {
-    if(this.updateBranchForm.valid) {
+    if (this.updateBranchForm.valid) {
       let updateBranchFormValue = this.updateBranchForm.value;
       let updateBranchRequest = {
         id: updateBranchFormValue.id,
@@ -83,18 +99,23 @@ export class EditComponent implements OnInit {
         postalCode: updateBranchFormValue.postalCode,
         email: updateBranchFormValue.emailAddress,
         faxNo: updateBranchFormValue.faxNo,
-        landLine: updateBranchFormValue.landLine
+        landLine: updateBranchFormValue.landLine,
       };
-      this._branchService.updateBranch(this.id, updateBranchRequest).pipe(finalize(() => {
-        this.busy = true;
-      })).subscribe({
-        next: (response) => {
-          if(response.success) {
-            this._router.navigate(['/branch/list']);
-          }
-        },
-      error: (error) => {}
-      });
+      this._branchService
+        .updateBranch(this.id, updateBranchRequest)
+        .pipe(
+          finalize(() => {
+            this.busy = true;
+          }),
+        )
+        .subscribe({
+          next: (response) => {
+            if (response.success) {
+              this._router.navigate(['/branch/list']);
+            }
+          },
+          error: (error) => {},
+        });
     }
-  }
+  };
 }

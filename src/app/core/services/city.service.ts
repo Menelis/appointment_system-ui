@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import {RepositoryService} from './repository.service';
-import {ApiResponse} from '../models/api-response';
-import {CityDto} from '../models/dto/city-dto';
+import { RepositoryService } from './repository.service';
+import { ApiResponse } from '../models/api-response';
+import { CityDto } from '../models/dto/city-dto';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CityService {
-
-  constructor(private _repository: RepositoryService) { }
+  constructor(private _repository: RepositoryService) {}
 
   getCitiesByProvinceId = (provinceId: number) => {
-    return this._repository.getData<ApiResponse<CityDto[]>>(`city/get-cities-by-province-id/${provinceId}`)
-  }
+    return this._repository.getData<ApiResponse<CityDto[]>>(
+      `city/get-cities-by-province-id/${provinceId}`,
+    );
+  };
 }

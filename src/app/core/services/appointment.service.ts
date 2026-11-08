@@ -1,37 +1,57 @@
 import { Injectable } from '@angular/core';
-import {RepositoryService} from './repository.service';
-import {ApiResponse} from '../models/api-response';
-import {PagedResult} from '../models/paged-result';
-import {AppointmentDto} from '../models/dto/appointment-dto';
-import {AuthService} from './auth/auth.service';
+import { RepositoryService } from './repository.service';
+import { ApiResponse } from '../models/api-response';
+import { PagedResult } from '../models/paged-result';
+import { AppointmentDto } from '../models/dto/appointment-dto';
+import { AuthService } from './auth/auth.service';
 import { getPaginationHttpParams } from '../util/object-util';
-import {HttpParams} from '@angular/common/http';
-import {AppConstants} from '../constants/app-constants';
-
+import { HttpParams } from '@angular/common/http';
+import { AppConstants } from '../constants/app-constants';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AppointmentService {
-
-  constructor(private _repository: RepositoryService,
-              private _authService: AuthService) { }
+  constructor(
+    private _repository: RepositoryService,
+    private _authService: AuthService,
+  ) {}
 
   public createAppointment = (newAppointmentRequest: any) => {
-    return this._repository.create<ApiResponse<any>>('appointment/create', newAppointmentRequest);
-  }
-  public updateAppointment = (id:number, updateAppointmentRequest: any) => {
-    return this._repository.update<ApiResponse<any>>(`appointment/update/${id}`, updateAppointmentRequest);
-  }
+    return this._repository.create<ApiResponse<any>>(
+      'appointment/create',
+      newAppointmentRequest,
+    );
+  };
+  public updateAppointment = (id: number, updateAppointmentRequest: any) => {
+    return this._repository.update<ApiResponse<any>>(
+      `appointment/update/${id}`,
+      updateAppointmentRequest,
+    );
+  };
 
   public updateAppointmentStatus = (updateStatus: any) => {
-    return this._repository.create<ApiResponse<any>>('appointment/update-status', updateStatus);
-  }
+    return this._repository.create<ApiResponse<any>>(
+      'appointment/update-status',
+      updateStatus,
+    );
+  };
 
-  public getPaginatedAppointments= (pageNo: number, pageSize: number, searchTerm?: string) => {
-    let apiEndPoint = this._authService.isAdmin ? 'appointment/admin/get-all-appointments' : 'appointment/customer/get-all-appointments';
-    let httpParams: HttpParams = getPaginationHttpParams(pageNo, pageSize)
-      .set(AppConstants.SEARCH_TERM, searchTerm || '');
-    return this._repository.getData<PagedResult<AppointmentDto[]>>(apiEndPoint, httpParams);
-  }
+  public getPaginatedAppointments = (
+    pageNo: number,
+    pageSize: number,
+    searchTerm?: string,
+  ) => {
+    let apiEndPoint = this._authService.isAdmin
+      ? 'appointment/admin/get-all-appointments'
+      : 'appointment/customer/get-all-appointments';
+    let httpParams: HttpParams = getPaginationHttpParams(pageNo, pageSize).set(
+      AppConstants.SEARCH_TERM,
+      searchTerm || '',
+    );
+    return this._repository.getData<PagedResult<AppointmentDto[]>>(
+      apiEndPoint,
+      httpParams,
+    );
+  };
 }

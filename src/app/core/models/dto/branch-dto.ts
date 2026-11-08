@@ -1,5 +1,5 @@
-import {CityDto} from './city-dto';
-import {ProvinceDto} from './province-dto';
+import { CityDto } from './city-dto';
+import { ProvinceDto } from './province-dto';
 
 export interface BranchDto {
   id: number;
@@ -12,5 +12,5 @@ export interface BranchDto {
   postalCode: string;
   email: string;
   faxNo: string;
-  landLine: string
+  landLine: string;
 }

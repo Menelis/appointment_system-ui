@@ -8,9 +8,8 @@ describe('CreateUpdateAppointmentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CreateUpdateAppointmentComponent]
-    })
-    .compileComponents();
+      declarations: [CreateUpdateAppointmentComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CreateUpdateAppointmentComponent);
     component = fixture.componentInstance;

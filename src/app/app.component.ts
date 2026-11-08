@@ -1,11 +1,11 @@
-import {Component, inject} from '@angular/core';
-import {AuthService} from './core/services/auth/auth.service';
+import { Component, inject } from '@angular/core';
+import { AuthService } from './core/services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: false,
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   authService: AuthService = inject(AuthService);
@@ -15,6 +15,6 @@ export class AppComponent {
   fullName = this.authService.fullName;
   isAdmin = this.authService.isAdmin;
   signOut = () => {
-    this.authService.signOut()
-  }
+    this.authService.signOut();
+  };
 }

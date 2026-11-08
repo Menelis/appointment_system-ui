@@ -1,11 +1,11 @@
-import {Component, Input} from '@angular/core';
-import {NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input } from '@angular/core';
+import { NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-progress-bar',
   standalone: false,
   templateUrl: './progress-bar.component.html',
-  styleUrl: './progress-bar.component.scss'
+  styleUrl: './progress-bar.component.scss',
 })
 export class ProgressBarComponent {
   @Input() progressValue!: number;

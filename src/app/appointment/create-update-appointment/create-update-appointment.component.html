@@ -5,27 +5,65 @@
     </div>
   </div>
   <div class="card-body">
-    <form [formGroup]="appointmentFormGroup" novalidate autocomplete="off" (ngSubmit)="emitEvent()">
+    <form
+      [formGroup]="appointmentFormGroup"
+      novalidate
+      autocomplete="off"
+      (ngSubmit)="emitEvent()"
+    >
       <div class="input-group mb-3">
         <span class="input-group-text required fw-bold">Province:</span>
-        <select class="form-control" formControlName="provinceId" (change)="onSelectedProvince($any($event.target).value)">
+        <select
+          class="form-control"
+          formControlName="provinceId"
+          (change)="onSelectedProvince($any($event.target).value)"
+        >
           <option selected disabled value="">Please select</option>
           <option *ngFor="let province of provinces" [value]="province.id">
             {{ province.name }}
           </option>
         </select>
       </div>
-      <span class="text-danger" *ngIf="_genericValidation.validateControl(appointmentFormGroup, 'provinceId') && _genericValidation.hasError(appointmentFormGroup, 'provinceId', 'required')">Province is required</span>
+      <span
+        class="text-danger"
+        *ngIf="
+          _genericValidation.validateControl(
+            appointmentFormGroup,
+            'provinceId'
+          ) &&
+          _genericValidation.hasError(
+            appointmentFormGroup,
+            'provinceId',
+            'required'
+          )
+        "
+        >Province is required</span
+      >
       <div class="input-group mb-3">
         <span class="input-group-text required fw-bold">City:</span>
-        <select class="form-control" formControlName="cityId" (change)="onSelectedCity($any($event.target).value)">
+        <select
+          class="form-control"
+          formControlName="cityId"
+          (change)="onSelectedCity($any($event.target).value)"
+        >
           <option selected disabled value="">Please select</option>
           <option *ngFor="let city of cities" [value]="city.id">
             {{ city.name }}
           </option>
         </select>
       </div>
-      <span class="text-danger" *ngIf="_genericValidation.validateControl(appointmentFormGroup, 'cityId') && _genericValidation.hasError(appointmentFormGroup, 'cityId', 'required')">City is required</span>
+      <span
+        class="text-danger"
+        *ngIf="
+          _genericValidation.validateControl(appointmentFormGroup, 'cityId') &&
+          _genericValidation.hasError(
+            appointmentFormGroup,
+            'cityId',
+            'required'
+          )
+        "
+        >City is required</span
+      >
       <div class="input-group mb-3">
         <span class="input-group-text required fw-bold">Branch:</span>
         <select class="form-control" formControlName="branchId">
@@ -35,7 +73,21 @@
           </option>
         </select>
       </div>
-      <span class="text-danger" *ngIf="_genericValidation.validateControl(appointmentFormGroup, 'branchId') && _genericValidation.hasError(appointmentFormGroup, 'branchId', 'required')">Branch is required</span>
+      <span
+        class="text-danger"
+        *ngIf="
+          _genericValidation.validateControl(
+            appointmentFormGroup,
+            'branchId'
+          ) &&
+          _genericValidation.hasError(
+            appointmentFormGroup,
+            'branchId',
+            'required'
+          )
+        "
+        >Branch is required</span
+      >
       <div class="input-group mb-3">
         <span class="input-group-text required fw-bold">Appointment Date:</span>
         <input
@@ -49,9 +101,27 @@
           [markDisabled]="markDisabled"
           readonly
         />
-        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+        <button
+          class="btn btn-outline-secondary bi bi-calendar3"
+          (click)="d.toggle()"
+          type="button"
+        ></button>
       </div>
-      <span class="text-danger" *ngIf="_genericValidation.validateControl(appointmentFormGroup, 'appointmentDate') && _genericValidation.hasError(appointmentFormGroup, 'appointmentDate', 'required')">Appointment Date is required</span>
+      <span
+        class="text-danger"
+        *ngIf="
+          _genericValidation.validateControl(
+            appointmentFormGroup,
+            'appointmentDate'
+          ) &&
+          _genericValidation.hasError(
+            appointmentFormGroup,
+            'appointmentDate',
+            'required'
+          )
+        "
+        >Appointment Date is required</span
+      >
       <div class="input-group mb-3">
         <span class="input-group-text fw-bold">Slot:</span>
         <select class="form-control" formControlName="slotId">
@@ -63,14 +133,47 @@
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text fw-bold">Appointment Info:</span>
-        <textarea class="form-control" rows="4" formControlName="description"></textarea>
-        <span class="text-danger" *ngIf="_genericValidation.validateControl(appointmentFormGroup, 'description') && _genericValidation.hasError(appointmentFormGroup, 'description', 'maxlength')">Description cannot exceed 500 characters</span>
+        <textarea
+          class="form-control"
+          rows="4"
+          formControlName="description"
+        ></textarea>
+        <span
+          class="text-danger"
+          *ngIf="
+            _genericValidation.validateControl(
+              appointmentFormGroup,
+              'description'
+            ) &&
+            _genericValidation.hasError(
+              appointmentFormGroup,
+              'description',
+              'maxlength'
+            )
+          "
+          >Description cannot exceed 500 characters</span
+        >
       </div>
       <div class="col-md-12 text-end">
-        <button class="btn btn-primary rounded-pill" type="submit" [disabled]="!appointmentFormGroup.valid">Submit</button>
-        <button type="button" class="btn btn-secondary rounded-pill" (click)="cancel()">Cancel</button>
+        <button
+          class="btn btn-primary rounded-pill"
+          type="submit"
+          [disabled]="!appointmentFormGroup.valid"
+        >
+          Submit
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary rounded-pill"
+          (click)="cancel()"
+        >
+          Cancel
+        </button>
       </div>
-      <app-response-message [success]="success" [message]="responseMessage"></app-response-message>
+      <app-response-message
+        [success]="success"
+        [message]="responseMessage"
+      ></app-response-message>
     </form>
   </div>
 </div>
