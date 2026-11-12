@@ -8,9 +8,9 @@ export const RoleConstants = {
    */
   ADMIN_ROLE: 'ADMINISTRATOR',
   /**
-   * Role constant for users.
+   * Role constant for tellers
    */
-  USER_ROLE: 'USER',
+  TELLER_ROLE: 'TELLER',
 };
 
 export const AppConstants = {

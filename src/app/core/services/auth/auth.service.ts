@@ -11,7 +11,7 @@ import {
   getHttpHeadersDisableCache,
   appendCorrelationId,
 } from '../../util/object-util';
-import {ServiceResponseDto} from '../../models/service-response-dto';
+import { ServiceResponseDto } from '../../models/service-response-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -100,8 +100,9 @@ export class AuthService {
   get isAdmin() {
     return this.userRoles.includes(RoleConstants.ADMIN_ROLE);
   }
-  get isUser(): boolean {
-    return this.userRoles.includes(RoleConstants.USER_ROLE);
+
+  get isTeller(): boolean {
+    return this.userRoles.includes(RoleConstants.TELLER_ROLE);
   }
   get accessToken() {
     return this._oauthService.getAccessToken();

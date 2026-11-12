@@ -33,7 +33,7 @@ export class ListComponent implements OnInit {
   ) {
     this.pageSize = appConfig.defaultUiSettings.pageSize;
     this.canConfirmBooking =
-      this._authService.isUser || this._authService.isAdmin;
+      this._authService.isTeller || this._authService.isAdmin;
   }
   ngOnInit(): void {
     this.searchForm = new FormGroup({

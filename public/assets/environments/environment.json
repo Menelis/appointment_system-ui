@@ -14,7 +14,7 @@
     "disablePKCE": false
   },
   "resourceServer": {
-    "endPoint": "http://localhost:9001/api/v1"
+    "endPoint": "http://localhost:9001/api"
   },
   "defaultUiSettings": {
     "pageSize": 10
