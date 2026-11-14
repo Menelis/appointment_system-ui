@@ -9,9 +9,9 @@ import { CityDto } from '../models/dto/city-dto';
 export class CityService {
   constructor(private _repository: RepositoryService) {}
 
-  getCitiesByProvinceId = (provinceId: number) => {
-    return this._repository.getData<ApiResponse<CityDto[]>>(
-      `city/get-cities-by-province-id/${provinceId}`,
+  getCitiesByProvinceId = (provinceId: string) => {
+    return this._repository.getData<CityDto[]>(
+      `v1/cities?provinceId=${provinceId}`
     );
   };
 }

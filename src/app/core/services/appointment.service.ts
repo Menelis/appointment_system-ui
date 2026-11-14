@@ -16,20 +16,20 @@ export class AppointmentService {
 
   public createAppointment = (newAppointmentRequest: any) => {
     return this._repository.create<ServiceResponseDto>(
-      '/v1/appointments',
+      'v1/appointments',
       newAppointmentRequest,
     );
   };
   public updateAppointment = (id: number, updateAppointmentRequest: any) => {
     return this._repository.update<ServiceResponseDto>(
-      `/v1/appointments/${id}`,
+      `v1/appointments/${id}`,
       updateAppointmentRequest,
     );
   };
 
   public updateAppointmentStatus = (updateStatus: any) => {
     return this._repository.create<ServiceResponseDto>(
-      '/v1/appointments/update-status',
+      'v1/appointments/update-status',
       updateStatus,
     );
   };
@@ -44,7 +44,7 @@ export class AppointmentService {
       searchTerm || '',
     );
     return this._repository.getData<PagedResult<AppointmentDto[]>>(
-      '/v1/appointments',
+      'v1/appointments',
       httpParams,
     );
   };

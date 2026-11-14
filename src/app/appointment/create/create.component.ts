@@ -42,7 +42,6 @@ export class CreateComponent implements OnInit {
           newAppointmentFormGroupValue.appointmentDate,
         ),
       };
-      console.log(newAppointment);
       this._appointmentService
         .createAppointment(newAppointment)
         .pipe(
@@ -56,12 +55,12 @@ export class CreateComponent implements OnInit {
               this._router.navigate(['/appointment/list']);
             }
             this.success = response.success;
-            this.responseMessage = response.message;
+            this.responseMessage = response.responseMessage;
             this.busy = false;
           },
           error: (error) => {
             this.success = false;
-            this.responseMessage = error.error.message;
+            this.responseMessage = error.error.responseMessage;
             this.busy = false;
           },
         });

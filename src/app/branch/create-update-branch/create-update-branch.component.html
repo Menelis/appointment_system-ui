@@ -93,9 +93,7 @@
             'landLine',
             'required'
           ) && _genericValidation.validateControl(branchFormGroup, 'landLine')
-        "
-        >Land Line is required</span
-      >
+        ">Land Line is required</span>
       <span
         class="text-danger"
         *ngIf="
@@ -108,7 +106,7 @@
         >Only 20 characters are allowed for Land Line</span
       >
       <div class="input-group mb-3">
-        <span class="input-group-text">Fax No:</span>
+        <span class="input-group-text fw-bold">Fax No:</span>
         <input type="text" class="form-control" formControlName="faxNo" />
       </div>
       <span
@@ -120,33 +118,7 @@
         >Only 20 characters are allowed for Fax No</span
       >
       <div class="input-group mb-3">
-        <span class="input-group-text required fw-bold">Street No:</span>
-        <input type="text" class="form-control" formControlName="streetNo" />
-      </div>
-      <span
-        class="text-danger"
-        *ngIf="
-          _genericValidation.hasError(
-            branchFormGroup,
-            'streetNo',
-            'required'
-          ) && _genericValidation.validateControl(branchFormGroup, 'streetNo')
-        "
-        >Street No is required</span
-      >
-      <span
-        class="text-danger"
-        *ngIf="
-          _genericValidation.hasError(
-            branchFormGroup,
-            'streetNo',
-            'maxlength'
-          ) && _genericValidation.validateControl(branchFormGroup, 'streetNo')
-        "
-        >Only 50 characters are allowed for Street No</span
-      >
-      <div class="input-group mb-3">
-        <span class="input-group-text fw-bold">Address Line 1:</span>
+        <span class="input-group-text required fw-bold">Address Line 1:</span>
         <input
           type="text"
           class="form-control"
@@ -166,7 +138,7 @@
         >Only 255 characters are allowed for Address Line 1</span
       >
       <div class="input-group mb-3">
-        <span class="input-group-text fw-bold">Address Line 2:</span>
+        <span class="input-group-text required fw-bold">Address Line 2:</span>
         <input
           type="text"
           class="form-control"
@@ -184,6 +156,26 @@
           _genericValidation.validateControl(branchFormGroup, 'addressLine1')
         "
         >Only 255 characters are allowed for Address Line 2</span
+      >
+      <div class="input-group mb-3">
+        <span class="input-group-text required fw-bold">Suburb:</span>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="suburb"
+        />
+      </div>
+      <span
+        class="text-danger"
+        *ngIf="
+          _genericValidation.hasError(
+            branchFormGroup,
+            'suburb',
+            'maxlength'
+          ) &&
+          _genericValidation.validateControl(branchFormGroup, 'suburb')
+        "
+      >Only 255 characters are allowed for Address Line 2</span
       >
       <div class="input-group mb-3">
         <span class="input-group-text required fw-bold">Province:</span>

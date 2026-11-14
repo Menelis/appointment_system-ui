@@ -36,18 +36,22 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th>Street No</th>
+            <th>Address Line 1</th>
+            <th>Address Line 2</th>
+            <th>Suburb</th>
             <th>Province</th>
             <th>City</th>
             <th colspan="2">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let branch of pagedBranchResult?.data?.content">
+          <tr *ngFor="let branch of pagedBranchResult.content">
             <td>{{ branch.name }}</td>
-            <td>{{ branch.streetNo }}</td>
-            <td>{{ branch?.province?.name }}</td>
-            <td>{{ branch?.city?.name }}</td>
+            <td>{{ branch.physicalAddress.addressLine1 }}</td>
+            <td>{{ branch.physicalAddress?.addressLine2 }}</td>
+            <td>{{ branch.physicalAddress?.suburb }}</td>
+            <td>{{ branch.physicalAddress?.province?.name }}</td>
+            <td>{{ branch.physicalAddress?.city?.name }}</td>
             <td colspan="2">
               <button
                 class="btn btn-primary rounded-pill"
@@ -56,7 +60,6 @@
               >
                 <i class="bi bi-pencil-square fs-5"></i>
               </button>
-              <!--                <button class="btn btn-danger rounded-pill"><i class="bi bi-recycle fs-5"></i></button>-->
             </td>
           </tr>
         </tbody>
@@ -65,8 +68,8 @@
             <td colspan="6">
               <ngb-pagination
                 [page]="currentPage"
-                [collectionSize]="pagedBranchResult.data.page.totalElements"
-                [pageSize]="pagedBranchResult.data.page.size"
+                [collectionSize]="pagedBranchResult.page.totalElements"
+                [pageSize]="pagedBranchResult.page.size"
                 [boundaryLinks]="true"
                 (pageChange)="onSelectedPageChange($event)"
               ></ngb-pagination>

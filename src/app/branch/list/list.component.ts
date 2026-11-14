@@ -41,7 +41,7 @@ export class ListComponent implements OnInit {
     }
   };
 
-  routeToEdit = (id: number) => {
+  routeToEdit = (id: string) => {
     this._router.navigate(['/branch/edit/' + id]);
   };
 

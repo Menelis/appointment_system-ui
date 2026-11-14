@@ -39,14 +39,14 @@ export class CreateUpdateBranchComponent implements OnInit {
   loadProvinces = () => {
     this._provinceService.getAllProvinces().subscribe({
       next: (response) => {
-        this.provinces = response.data;
+        this.provinces = response;
       },
     });
   };
-  onSelectedProvince = (provinceId: number) => {
+  onSelectedProvince = (provinceId: string) => {
     this._cityService.getCitiesByProvinceId(provinceId).subscribe({
       next: (response) => {
-        this.cities = response.data;
+        this.cities = response;
       },
     });
   };

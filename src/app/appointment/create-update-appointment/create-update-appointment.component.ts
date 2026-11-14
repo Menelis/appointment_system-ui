@@ -37,7 +37,7 @@ export class CreateUpdateAppointmentComponent implements OnInit {
   // Look up properties
   slots!: SlotDto[];
   provinces!: ProvinceDto[];
-  provinceId!: number;
+  provinceId!: string;
   minDate!: NgbDateStruct;
 
   constructor(
@@ -59,7 +59,7 @@ export class CreateUpdateAppointmentComponent implements OnInit {
   loadSlots = () => {
     this._slotService.getAllSlots().subscribe({
       next: (response) => {
-        this.slots = response.data;
+        this.slots = response;
       },
       error: (error) => {},
     });
@@ -67,7 +67,7 @@ export class CreateUpdateAppointmentComponent implements OnInit {
   loadProvinces = () => {
     this._provinceService.getAllProvinces().subscribe({
       next: (response) => {
-        this.provinces = response.data;
+        this.provinces = response;
       },
       error: (error) => {},
     });
@@ -80,21 +80,22 @@ export class CreateUpdateAppointmentComponent implements OnInit {
     this._router.navigate(['/appointment/list']);
   };
 
-  onSelectedProvince = (provinceId: number) => {
+  onSelectedProvince = (provinceId: string) => {
     this.provinceId = provinceId;
     this._cityService.getCitiesByProvinceId(provinceId).subscribe({
       next: (response) => {
-        this.cities = response.data;
+        this.cities = response;
       },
       error: (error) => {},
     });
   };
-  onSelectedCity = (cityId: number) => {
+  onSelectedCity = (cityId: string) => {
+    console.log(cityId);
     this._branchService
       .getBranchesByProvinceIdAndCityId(this.provinceId, cityId)
       .subscribe({
         next: (response) => {
-          this.branches = response.data;
+          this.branches = response;
         },
         error: (error) => {},
       });

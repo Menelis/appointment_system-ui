@@ -24,12 +24,9 @@ export class CreateComponent implements OnInit {
         Validators.required,
         Validators.maxLength(100),
       ]),
-      streetNo: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(50),
-      ]),
-      addressLine1: new FormControl(null, [Validators.maxLength(255)]),
-      addressLine2: new FormControl(null, [Validators.maxLength(255)]),
+      addressLine1: new FormControl('', [Validators.required, Validators.maxLength(255)]),
+      addressLine2: new FormControl('', [Validators.required, Validators.maxLength(255)]),
+      suburb: new FormControl('', [Validators.required,Validators.maxLength(50)]),
       cityId: new FormControl('', [Validators.required]),
       provinceId: new FormControl('', [Validators.required]),
       postalCode: new FormControl('', [
@@ -53,19 +50,21 @@ export class CreateComponent implements OnInit {
       let newBranchFormValue = this.newBranchForm.value;
       let createBranchRequest = {
         name: newBranchFormValue.branchName,
-        streetNo: newBranchFormValue.streetNo,
-        addressLine1: newBranchFormValue.addressLine1,
-        addressLine2: newBranchFormValue.addressLine2,
-        cityId: newBranchFormValue.cityId,
-        provinceId: newBranchFormValue.provinceId,
-        postalCode: newBranchFormValue.postalCode,
+        physicalAddress: {
+          addressLine1: newBranchFormValue.addressLine1,
+          addressLine2: newBranchFormValue.addressLine2,
+          suburb: newBranchFormValue.suburb,
+          provinceId: newBranchFormValue.provinceId,
+          cityId: newBranchFormValue.cityId,
+          postalCode: newBranchFormValue.postalCode
+        },
         email: newBranchFormValue.emailAddress,
         faxNo: newBranchFormValue.faxNo,
         landLine: newBranchFormValue.landLine,
       };
       this._branchService.createBranch(createBranchRequest).subscribe({
         next: (response) => {
-          console.log(response.success);
+          console.log(response);
           if (response.success) {
             this._router.navigate(['/branch/list']);
           }

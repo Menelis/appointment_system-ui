@@ -57,6 +57,7 @@ export class ListComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.pagedAppointmentResult = response;
+          console.log(JSON.stringify(response));
         },
         error: (error) => {},
       });
@@ -107,17 +108,18 @@ export class ListComponent implements OnInit {
     };
     this._appointmentService.updateAppointmentStatus(updateStatus).subscribe({
       next: (response) => {
-        if (response.success) {
+        let title: string = 'Booking Confirmation';
+        if(response.success) {
           this._sweetAlertService.showSuccessMessage(
-            'Booking Confirmation',
-            response.message,
+            title,
+            response.responseMessage
           );
           return;
         }
         this._sweetAlertService.showFailureMessage(
-          'Booking Confirmation',
-          response.message,
-        );
+          title,
+          response.responseMessage
+        )
       },
       error: (error) => {},
     });

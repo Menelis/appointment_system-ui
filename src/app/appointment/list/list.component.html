@@ -46,15 +46,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let appointment of pagedAppointmentResult?.data?.content">
+          <tr *ngFor="let appointment of pagedAppointmentResult?.content">
             <td>{{ appointment.referenceNo }}</td>
-            <td>{{ appointment?.user?.fullName }}</td>
+            <td>{{ appointment?.userSummary?.fullName }}</td>
             <td>
               {{ appointment.appointmentDate }}
               {{ getSlotFormatedString(appointment.slot) }}
             </td>
             <td>{{ appointment.status }}</td>
-            <td>{{ appointment?.branch?.name }}</td>
+            <td>{{ appointment?.branchSummary?.name }}</td>
             <td colspan="4" *ngIf="canConfirmBooking">
               <button
                 class="btn btn-primary rounded-pill"
@@ -102,7 +102,7 @@
               </button>
             </td>
           </tr>
-          <tr *ngIf="pagedAppointmentResult?.data?.content?.length === 0">
+          <tr *ngIf="pagedAppointmentResult?.content?.length === 0">
             <td colspan="8" class="text-center">
               No appointments created yet.
             </td>
@@ -113,10 +113,10 @@
             <td colspan="8">
               <ngb-pagination
                 [collectionSize]="
-                  pagedAppointmentResult.data.page.totalElements
+                  pagedAppointmentResult.page.totalElements
                 "
-                [page]="pagedAppointmentResult.data.page.number + 1"
-                [pageSize]="pagedAppointmentResult.data.page.size"
+                [page]="pagedAppointmentResult.page.number + 1"
+                [pageSize]="pagedAppointmentResult.page.size"
                 (pageChange)="onPageSelectChange($event)"
               ></ngb-pagination>
             </td>

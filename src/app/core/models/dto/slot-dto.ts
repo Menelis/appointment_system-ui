@@ -1,5 +1,5 @@
 export interface SlotDto {
-  id: number;
+  id: string;
   slotStart: string;
   slotEnd: string;
 }

@@ -1,15 +1,9 @@
-import { CityDto } from './city-dto';
-import { ProvinceDto } from './province-dto';
+import {AddressDto} from './address-dto';
 
 export interface BranchDto {
-  id: number;
+  id: string;
   name: string;
-  streetNo: string;
-  addressLine1: string;
-  addressLine2: string;
-  city: CityDto;
-  province: ProvinceDto;
-  postalCode: string;
+  physicalAddress: AddressDto;
   email: string;
   faxNo: string;
   landLine: string;

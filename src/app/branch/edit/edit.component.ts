@@ -16,7 +16,7 @@ import { finalize } from 'rxjs';
 export class EditComponent implements OnInit {
   branch!: BranchDto;
   updateBranchForm!: FormGroup;
-  id!: number;
+  id!: string;
   cities!: CityDto[];
   busy = false;
   constructor(
@@ -25,7 +25,7 @@ export class EditComponent implements OnInit {
     private _cityService: CityService,
     private _router: Router,
   ) {
-    this.id = Number(this._route.snapshot.paramMap.get('id') || 0);
+    this.id = this._route.snapshot.paramMap.get('id') || '';
   }
   ngOnInit(): void {
     this.updateBranchForm = new FormGroup({
@@ -34,12 +34,9 @@ export class EditComponent implements OnInit {
         Validators.required,
         Validators.maxLength(100),
       ]),
-      streetNo: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(50),
-      ]),
       addressLine1: new FormControl(null, [Validators.maxLength(255)]),
       addressLine2: new FormControl(null, [Validators.maxLength(255)]),
+      suburb: new FormControl('', [Validators.required,Validators.maxLength(50)]),
       cityId: new FormControl('', [Validators.required]),
       provinceId: new FormControl('', [Validators.required]),
       postalCode: new FormControl('', [
@@ -63,23 +60,28 @@ export class EditComponent implements OnInit {
   getBranchById = () => {
     this._branchService.getBranchById(this.id).subscribe({
       next: (response) => {
-        this.branch = response.data;
-        this.loadCities(this.branch?.province?.id);
+        this.branch = response;
+        this.loadCities(this.branch.physicalAddress.province.id);
         this.updateBranchForm.patchValue({
           branchName: this.branch.name,
           emailAddress: this.branch.email,
-          provinceId: this.branch?.province?.id,
-          cityId: this.branch?.city?.id,
-          ...this.branch,
+          landLine: this.branch.landLine,
+          faxNo: this.branch.faxNo,
+          addressLine1: this.branch?.physicalAddress?.addressLine1,
+          addressLine2: this.branch?.physicalAddress?.addressLine2,
+          suburb : this.branch?.physicalAddress?.suburb,
+          provinceId: this.branch?.physicalAddress?.province?.id,
+          cityId: this.branch?.physicalAddress?.city?.id,
+          postalCode: this.branch?.physicalAddress?.postalCode
         });
       },
       error: (error) => {},
     });
   };
-  loadCities = (provinceId: number) => {
+  loadCities = (provinceId: string) => {
     this._cityService.getCitiesByProvinceId(provinceId).subscribe({
       next: (response) => {
-        this.cities = response.data;
+        this.cities = response;
       },
       error: (error) => {},
     });
@@ -91,12 +93,14 @@ export class EditComponent implements OnInit {
       let updateBranchRequest = {
         id: updateBranchFormValue.id,
         name: updateBranchFormValue.branchName,
-        streetNo: updateBranchFormValue.streetNo,
-        addressLine1: updateBranchFormValue.addressLine1,
-        addressLine2: updateBranchFormValue.addressLine2,
-        cityId: updateBranchFormValue.cityId,
-        provinceId: updateBranchFormValue.provinceId,
-        postalCode: updateBranchFormValue.postalCode,
+        physicalAddress: {
+          addressLine1: updateBranchFormValue.addressLine1,
+          addressLine2: updateBranchFormValue.addressLine2,
+          suburb: updateBranchFormValue.suburb,
+          cityId: updateBranchFormValue.cityId,
+          provinceId: updateBranchFormValue.provinceId,
+          postalCode: updateBranchFormValue.postalCode
+        },
         email: updateBranchFormValue.emailAddress,
         faxNo: updateBranchFormValue.faxNo,
         landLine: updateBranchFormValue.landLine,

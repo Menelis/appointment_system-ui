@@ -1,4 +1,4 @@
 export interface ProvinceDto {
-  id: number;
+  id: string;
   name: string;
 }

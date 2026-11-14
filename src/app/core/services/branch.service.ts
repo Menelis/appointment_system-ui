@@ -7,6 +7,7 @@ import { PagedResult } from '../models/paged-result';
 import { getPaginationHttpParams } from '../util/object-util';
 import { HttpParams } from '@angular/common/http';
 import { AppConstants } from '../constants/app-constants';
+import {ServiceResponseDto} from '../models/service-response-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -14,14 +15,14 @@ import { AppConstants } from '../constants/app-constants';
 export class BranchService {
   constructor(private _repository: RepositoryService) {}
 
-  getBranchesByProvinceIdAndCityId = (provinceId: number, cityId: number) => {
-    return this._repository.getData<ApiResponse<BranchDto[]>>(
-      `branch/getBranchesByProvinceIdAndCityId/${provinceId}/${cityId}`,
+  getBranchesByProvinceIdAndCityId = (provinceId: string, cityId: string) => {
+    return this._repository.getData<BranchDto[]>(
+      `v1/branches/provinces/${provinceId}/cities/${cityId}`,
     );
   };
 
   getAllBranches = () => {
-    return this._repository.getData<ApiResponse<BranchDto[]>>('branch');
+    return this._repository.getData<BranchDto[]>('branches');
   };
   getPaginatedBranches = (
     pageNo: number,
@@ -33,22 +34,22 @@ export class BranchService {
       searchTerm || '',
     );
     return this._repository.getData<PagedResult<BranchDto[]>>(
-      'branch/get-paginated-branches',
+      'v1/branches/search',
       httpParams,
     );
   };
-  getBranchById = (id: number): Observable<ApiResponse<BranchDto>> => {
-    return this._repository.getData<ApiResponse<BranchDto>>(`branch/${id}`);
+  getBranchById = (id: string): Observable<BranchDto> => {
+    return this._repository.getData<BranchDto>(`v1/branches/${id}`);
   };
   createBranch = (branchRequest: any) => {
-    return this._repository.create<ApiResponse<any>>(
-      'branch/admin/create',
+    return this._repository.create<ServiceResponseDto>(
+      'v1/admin/branches',
       branchRequest,
     );
   };
-  updateBranch = (id: number, updateBranchRequest: any) => {
-    return this._repository.update<ApiResponse<any>>(
-      `branch/admin/update/${id}`,
+  updateBranch = (id: string, updateBranchRequest: any) => {
+    return this._repository.update<ServiceResponseDto>(
+      `v1/admin/branches/${id}`,
       updateBranchRequest,
     );
   };
